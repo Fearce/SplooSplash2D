@@ -13,6 +13,10 @@ public class MovementScript : MonoBehaviour
 
     private bool IsJumping;
 
+    private bool IsDead;
+
+    private Animator myAnim;
+
     public Transform Player { get; set; }
 
     public Rigidbody2D PlayerBody;
@@ -21,36 +25,43 @@ public class MovementScript : MonoBehaviour
     {
         Player = GetComponent<Transform>();
         PlayerBody = gameObject.GetComponent<Rigidbody2D>();
-
+        myAnim = GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-        cam.transform.position = new Vector3(Player.position.x,cam.transform.position.y,-10f);
+        if (!IsDead)
+        {
+            GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+            cam.transform.position = new Vector3(Player.position.x, cam.transform.position.y, -10f);
 
-        gameObject.transform.rotation = new Quaternion();
-        // Right
-        if (StickX > 0.2)
-        {
-            gameObject.transform.localScale = new Vector3(3, 3, 1);
-            Player.position = new Vector3( (Player.position.x + MoveSpeed), Player.position.y);
-        }
-        // Left
-        if (StickX < -0.2)
-        {
-            gameObject.transform.localScale = new Vector3(-3, 3, 1);
-            Player.position = new Vector3(Player.position.x - MoveSpeed, Player.position.y);
-        }
+            gameObject.transform.rotation = new Quaternion();
+            // Right
+            if (StickX > 0.2)
+            {
+                gameObject.transform.localScale = new Vector3(3, 3, 1);
+                Player.position = new Vector3((Player.position.x + MoveSpeed), Player.position.y);
+            }
+            // Left
+            if (StickX < -0.2)
+            {
+                gameObject.transform.localScale = new Vector3(-3, 3, 1);
+                Player.position = new Vector3(Player.position.x - MoveSpeed, Player.position.y);
+            }
 
-        // Up
-        if (StickY > 0.5 && IsJumping == false)
+            // Up
+            if (StickY > 0.5 && IsJumping == false)
+            {
+                PlayerBody.AddForce(transform.up * JumpForce * 100);
+                IsJumping = true;
+                //Player.position = new Vector3(Player.position.x - MoveSpeed, Player.position.y);
+            }
+        }
+        else
         {
-            PlayerBody.AddForce(transform.up * JumpForce * 100);
-            IsJumping = true;
-            //Player.position = new Vector3(Player.position.x - MoveSpeed, Player.position.y);
+            myAnim.SetBool("death", true);
         }
     }
 
@@ -64,14 +75,22 @@ public class MovementScript : MonoBehaviour
             IsJumping = false;
         }
 
+        if(coll.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Pacman died");
+            IsDead = true;
+        }
+
         if (coll.gameObject.tag == "coin")
         {
             Debug.Log("Collision with coin");
+            
             Destroy(coll.gameObject);
             //points++;
             //GameObject.FindGameObjectWithTag("Text").GetComponent<Text>().text = "Score: " + points;
             //score.text = "Score: " + points;
         }
-
     }
+
+
 }

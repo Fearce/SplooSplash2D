@@ -14,18 +14,24 @@ public class EnemyFollow : MonoBehaviour
     public float JumpForce = 8f;
 
     private bool IsJumping;
+
+    private Animator pacAnim;
     // Start is called before the first frame update
     void Start()
     {
         PlayerBody = gameObject.GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        pacAnim = target.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         gameObject.transform.rotation = new Quaternion();
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        }
 
         if (Vector2.Distance(transform.position, target.position) < distance && IsJumping == false)
         {
@@ -45,7 +51,7 @@ public class EnemyFollow : MonoBehaviour
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("Collision with Player");
-            Destroy(coll.gameObject);
+            Destroy(coll.gameObject, 2.1f);
             //points++;
             //GameObject.FindGameObjectWithTag("Text").GetComponent<Text>().text = "Score: " + points;
             //score.text = "Score: " + points;
