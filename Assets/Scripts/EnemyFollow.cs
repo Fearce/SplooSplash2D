@@ -7,6 +7,7 @@ public class EnemyFollow : MonoBehaviour
 
     public float speed;
     public float distance;
+    public Splatter splatter;
 
     public Transform target;
 
@@ -55,6 +56,8 @@ public class EnemyFollow : MonoBehaviour
             Debug.Log("ded ghost");
             Vector3 pos = new Vector3(transform.position.x,transform.position.y, -3.29f);
             Instantiate(BloodSplash, pos, Quaternion.identity);
+            Splatter splatterObj = (Splatter)Instantiate(splatter, pos, Quaternion.identity);
+
             Destroy(gameObject);
         }
 
