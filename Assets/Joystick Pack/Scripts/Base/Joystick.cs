@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -63,9 +66,10 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     }
 
     public float fireRate = 0.5f;
-    private float nextFire = 0.0f;
+    private DateTime nextFire = DateTime.MinValue;
     private Vector2 bulletPos;
-    public GameObject Bullet;
+    public GameObject BulletToRight, BulletToLeft;
+    private bool isFiring = false;
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -85,23 +89,51 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         {
             MovementScript.StickDirection = input;
         }
-        else if (Time.time > nextFire)
+        else if (!isFiring)
         {
-            if (Bullet == null)
+            Debug.Log("firing start");
+            isFiring = true;
+            Task.Run(() =>
             {
-                Bullet = GameObject.FindGameObjectWithTag("Bullet");
-            }
-            nextFire = Time.time + fireRate;
-            //BulletScript.velocity = input;
-            Fire();
+                Debug.Log("firing task start");
+                //nextFire = 0;
+                while (isFiring)
+                {
+                    Debug.Log("loop start, checking time " + DateTime.UtcNow + " " + nextFire);
+                    if (DateTime.UtcNow > nextFire)
+                    {
+                        Debug.Log("condition!!");
+                        //if (BulletToRight == null || BulletToLeft == null)
+                        //{
+                        //    Debug.Log("Setting bullets");
+                        //    BulletToRight = GameObject.FindGameObjectWithTag("BulletToRight");
+                        //    BulletToLeft = GameObject.FindGameObjectWithTag("BulletToLeft");
+                        //}
+
+                        Debug.Log("Setting nextFire");
+                        nextFire = DateTime.UtcNow.AddSeconds(fireRate);
+                        Debug.Log("firing");
+                        Fire();
+                    }
+                }
+            });
+
         }
     }
 
     void Fire()
     {
         bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        bulletPos.x += 1f;
-        Instantiate(Bullet,bulletPos, Quaternion.identity);
+        if (input.x >= 0)
+        {
+            bulletPos.x += 1f;
+            Instantiate(BulletToRight, bulletPos, Quaternion.identity);
+        }
+        else
+        {
+            bulletPos.x -= 1f;
+            Instantiate(BulletToLeft, bulletPos, Quaternion.identity);
+        }
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
@@ -162,7 +194,15 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
         // We set the direction for player movement to zero vector
-        MovementScript.StickDirection = Vector2.zero;
+        if (gameObject.name == "MovementStick")
+        {
+            MovementScript.StickDirection = Vector2.zero;
+        }
+        else
+        {
+            Debug.Log("stopping fire");
+            isFiring = false;
+        }
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)

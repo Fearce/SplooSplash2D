@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Obstacles
   - Enemy
+  - Bullet
+  - MovementStick
+  - AttackStick
+  - BulletToLeft
+  - BulletToRight
   layers:
   - Default
   - TransparentFX

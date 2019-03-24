@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    //public static Vector2 velocity;
     public float velX = 5f;
     private float velY = 0f;
     private Rigidbody2D rb;
@@ -20,12 +19,7 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (velocity == Vector2.zero)
-        //{
-        //    rb.velocity = velocity;
-        //}
-        //rb.velocity = velocity;
-        rb.velocity = new Vector2(velX, velY);
+       rb.velocity = new Vector2(velX, velY);
     }
 
     public void OnCollisionEnter2D(Collision2D collision)

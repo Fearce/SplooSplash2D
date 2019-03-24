@@ -39,20 +39,20 @@ public class MovementScript : MonoBehaviour
 
             gameObject.transform.rotation = new Quaternion();
             // Right
-            if (StickX > 0.2)
+            if (StickX > 0.2 || Input.GetKey(KeyCode.RightArrow))
             {
                 gameObject.transform.localScale = new Vector3(3, 3, 1);
                 Player.position = new Vector3((Player.position.x + MoveSpeed), Player.position.y);
             }
             // Left
-            if (StickX < -0.2)
+            if (StickX < -0.2 || Input.GetKey(KeyCode.LeftArrow))
             {
                 gameObject.transform.localScale = new Vector3(-3, 3, 1);
                 Player.position = new Vector3(Player.position.x - MoveSpeed, Player.position.y);
             }
 
             // Up
-            if (StickY > 0.5 && IsJumping == false)
+            if ((StickY > 0.5 || Input.GetKey(KeyCode.UpArrow)) && IsJumping == false )
             {
                 PlayerBody.AddForce(transform.up * JumpForce * 100);
                 IsJumping = true;
