@@ -27,6 +27,10 @@ public class BulletScript : MonoBehaviour
         string otherObject = collision.gameObject.name;
         Debug.Log("Bullet collided with " + otherObject);
         Destroy(gameObject);
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+        }
     }
     
     private void OnTriggerEnter2D(Collider2D other)
