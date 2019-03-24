@@ -40,12 +40,22 @@ public class EnemyFollow : MonoBehaviour
         }
     }
 
+    public GameObject BloodSplash;
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Obstacles")
         {
             // Debug.Log("touching floor");
             IsJumping = false;
+        }
+
+        if (coll.gameObject.tag.Contains("Bullet"))
+        {
+            Debug.Log("ded ghost");
+            Vector3 pos = new Vector3(transform.position.x,transform.position.y, -3.29f);
+            Instantiate(BloodSplash, pos, Quaternion.identity);
+            Destroy(gameObject);
         }
 
         if (coll.gameObject.tag == "Player")
