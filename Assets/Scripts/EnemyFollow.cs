@@ -33,7 +33,7 @@ public class EnemyFollow : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
 
-        if (Vector2.Distance(transform.position, target.position) < distance && IsJumping == false)
+        if (target != null && (Vector2.Distance(transform.position, target.position) < distance && IsJumping == false))
         {
             PlayerBody.AddForce(transform.up * JumpForce * 100);
             IsJumping = true;
