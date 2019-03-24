@@ -62,6 +62,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         OnDrag(eventData);
     }
 
+    public float fireRate = 0.5f;
+    private float nextFire = 0.0f;
+    private Vector2 bulletPos;
+    public GameObject Bullet;
+
     public void OnDrag(PointerEventData eventData)
     {
         cam = null;
@@ -76,7 +81,27 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchoredPosition = input * radius * handleRange;
         // We set the direction for player movement to the vector of the joystick movement
         //Debug.Log(input);
-        MovementScript.StickDirection = input;
+        if (gameObject.name == "MovementStick")
+        {
+            MovementScript.StickDirection = input;
+        }
+        else if (Time.time > nextFire)
+        {
+            if (Bullet == null)
+            {
+                Bullet = GameObject.FindGameObjectWithTag("Bullet");
+            }
+            nextFire = Time.time + fireRate;
+            //BulletScript.velocity = input;
+            Fire();
+        }
+    }
+
+    void Fire()
+    {
+        bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        bulletPos.x += 1f;
+        Instantiate(Bullet,bulletPos, Quaternion.identity);
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
