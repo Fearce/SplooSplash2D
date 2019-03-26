@@ -89,6 +89,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         }
         else
         {
+            // Fire weapon
             if (Time.time > nextFire)
             {
                 if (BulletToRight == null || BulletToLeft == null)
@@ -98,6 +99,15 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 }
                 Fire();
                 nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
+            }
+
+            // Rotate weapon
+            if (input.x != 0.0f || input.y != 0.0f)
+            {
+                float angle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
+                GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
+                int rotationAdjust = 85;
+                weapon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -angle+ rotationAdjust));
             }
         }
     }
