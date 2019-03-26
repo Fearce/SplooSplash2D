@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,9 +30,24 @@ public class MovementScript : MonoBehaviour
 
     }
 
+    DateTime lastJump = DateTime.MinValue;
+    private float lastY = 0;
+
+    void FixJumpingBug()
+    {
+        if ((lastJump == DateTime.MinValue || DateTime.UtcNow > lastJump.AddSeconds(3)))
+        {
+            lastJump = DateTime.UtcNow;
+            lastY = gameObject.transform.position.y;
+            IsJumping = false;
+            Debug.Log("jump fixed");
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        FixJumpingBug();
         if (!IsDead)
         {
             GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -73,6 +89,7 @@ public class MovementScript : MonoBehaviour
         {
             // Debug.Log("touching floor");
             IsJumping = false;
+            lastY = gameObject.transform.position.y;
         }
 
         if(coll.gameObject.tag == "Enemy")
