@@ -103,16 +103,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     void Fire()
     {
         bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        if (input.x >= 0)
-        {
-            bulletPos.x += 1f;
-            Instantiate(BulletToRight, bulletPos, Quaternion.identity);
-        }
-        else
-        {
-            bulletPos.x -= 1f;
-            Instantiate(BulletToLeft, bulletPos, Quaternion.identity);
-        }
+        GameObject bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
+        bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(input.normalized * 10, ForceMode2D.Impulse);
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
