@@ -7,6 +7,8 @@ namespace Assets.Scripts
 {
     /// <summary>
     /// Script for Gun & Bullet stuff
+    /// Der kan evt addes flere properties der kan bruges f.eks Spread til RPG/shotguns eller noget.
+    /// Måske AK47 skulle have inaccuracy også?
     /// </summary>
     public class BulletScript : MonoBehaviour
     {
