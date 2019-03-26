@@ -64,7 +64,7 @@ public class EnemyFollow : MonoBehaviour
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("Collision with Player");
-            Destroy(coll.gameObject, 2.1f);
+            //Destroy(coll.gameObject, 2.1f);
             //points++;
             //GameObject.FindGameObjectWithTag("Text").GetComponent<Text>().text = "Score: " + points;
             //score.text = "Score: " + points;

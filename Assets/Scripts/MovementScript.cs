@@ -2,9 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MovementScript : MonoBehaviour
 {
+    public int lifes;
+
+    public Text hpText;
+    public GameObject deadPanel;
+
     public static Vector2 StickDirection { get; set; }
     private float StickX => StickDirection.x;
     private float StickY => StickDirection.y;
@@ -32,6 +38,14 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hpText.text = "HP: " + lifes;
+
+        if (lifes == 0)
+        {
+            IsDead = true;
+            deadPanel.SetActive(true);
+        }
+
         if (!IsDead)
         {
             GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -39,20 +53,20 @@ public class MovementScript : MonoBehaviour
 
             gameObject.transform.rotation = new Quaternion();
             // Right
-            if (StickX > 0.2 || Input.GetKey(KeyCode.RightArrow))
+            if (StickX > 0.2 || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
                 gameObject.transform.localScale = new Vector3(3, 3, 1);
                 Player.position = new Vector3((Player.position.x + MoveSpeed), Player.position.y);
             }
             // Left
-            if (StickX < -0.2 || Input.GetKey(KeyCode.LeftArrow))
+            if (StickX < -0.2 || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
                 gameObject.transform.localScale = new Vector3(-3, 3, 1);
                 Player.position = new Vector3(Player.position.x - MoveSpeed, Player.position.y);
             }
 
             // Up
-            if ((StickY > 0.5 || Input.GetKey(KeyCode.UpArrow)) && IsJumping == false )
+            if ((StickY > 0.5 || (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))) && IsJumping == false )
             {
                 PlayerBody.AddForce(transform.up * JumpForce * 100);
                 IsJumping = true;
@@ -77,8 +91,18 @@ public class MovementScript : MonoBehaviour
 
         if(coll.gameObject.tag == "Enemy")
         {
-            Debug.Log("Pacman died");
-            IsDead = true;
+            if (lifes > 0)
+            {
+                lifes--;
+            }
+            Debug.Log(lifes);
+            hpText.text = "HP: " + lifes;
+
+            if(lifes == 0)
+            {
+                Destroy(gameObject, 2.1f);
+            }
+            
         }
 
         if (coll.gameObject.tag == "coin")
@@ -92,5 +116,15 @@ public class MovementScript : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Cherry")
+        {
+            Destroy(other.gameObject);
+            lifes++;
+            Debug.Log(lifes);
+            hpText.text = "HP: " + lifes;
+        }
+    }
 
 }
