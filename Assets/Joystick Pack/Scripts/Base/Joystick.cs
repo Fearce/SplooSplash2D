@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -83,7 +84,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         //Debug.Log(input);
         if (gameObject.name == "MovementStick")
         {
-            MovementScript.StickDirection = input;
+            PlayerScript.StickDirection = input;
         }
         else
         {
@@ -167,7 +168,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         // We set the direction for player movement to zero vector
         if (gameObject.name == "MovementStick")
         {
-             MovementScript.StickDirection = Vector2.zero;
+             PlayerScript.StickDirection = Vector2.zero;
         }
         else
         {
