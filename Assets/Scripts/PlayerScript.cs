@@ -9,6 +9,8 @@ namespace Assets.Scripts
     /// </summary>
     public class PlayerScript : MonoBehaviour
     {
+        public GunTypes CurrentWeapon = GunTypes.Pistol1;
+
         public int Lives;
 
         public Text HpText;
