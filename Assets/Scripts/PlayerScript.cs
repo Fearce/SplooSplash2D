@@ -9,6 +9,7 @@ namespace Assets.Scripts
     /// </summary>
     public class PlayerScript : MonoBehaviour
     {
+        public static bool FacingRight = true;
         public static GunTypes CurrentWeapon = GunTypes.Pistol1;
 
         public int Lives;
@@ -89,12 +90,14 @@ namespace Assets.Scripts
                 // Right
                 if (StickX > 0.2 || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
                 {
+                    FacingRight = true;
                     gameObject.transform.localScale = new Vector3(3, 3, 1);
                     Player.position = new Vector3((Player.position.x + MoveSpeed), Player.position.y);
                 }
                 // Left
                 if (StickX < -0.2 || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
                 {
+                    FacingRight = false;
                     gameObject.transform.localScale = new Vector3(-3, 3, 1);
                     Player.position = new Vector3(Player.position.x - MoveSpeed, Player.position.y);
                 }

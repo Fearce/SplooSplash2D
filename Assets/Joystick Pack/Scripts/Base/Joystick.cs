@@ -107,7 +107,15 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 float angle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
                 GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
                 int rotationAdjust = 85;
-                weapon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -angle+ rotationAdjust));
+                if (PlayerScript.FacingRight)
+                {
+                    angle = -angle + rotationAdjust;
+                }
+                else
+                {
+                    angle = -angle - rotationAdjust;
+                }
+                weapon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
             }
         }
     }
