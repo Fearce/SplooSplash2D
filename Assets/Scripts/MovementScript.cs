@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,10 +35,22 @@ public class MovementScript : MonoBehaviour
         myAnim = GetComponent<Animator>();
 
     }
+    DateTime lastJump = DateTime.MinValue;
+
+    void FixJumpingBug()
+    {
+        if (PlayerBody.velocity.y < 1f && (lastJump == DateTime.MinValue || DateTime.UtcNow > lastJump.AddSeconds(3)))
+        {
+            lastJump = DateTime.UtcNow;
+            IsJumping = false;
+            Debug.Log("jump fixed");
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
+        FixJumpingBug();
         hpText.text = "HP: " + lifes;
 
         if (lifes == 0)
