@@ -129,8 +129,18 @@ namespace Assets.Scripts
             }
 
             // On hitting ghost
-            if(coll.gameObject.tag == "Enemy")
+            if (coll.gameObject.tag == "Enemy" || coll.gameObject.tag == "Trap") 
             {
+                if (coll.gameObject.name == "TrapRoof")
+                {
+                    Debug.Log("pew");
+                    PlayerBody.AddForce(-transform.up*1000);
+                }
+                else if (coll.gameObject.name == "TrapFloor")
+                {
+                    PlayerBody.AddForce(transform.up * 1000);
+                }
+                isJumping = false;
                 if (Lives > 0)
                 {
                     Lives--;
