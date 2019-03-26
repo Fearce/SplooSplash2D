@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -56,6 +58,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchorMax = center;
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
+        StartCoroutine("Firing");
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
@@ -97,7 +100,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                     BulletToRight = GameObject.FindGameObjectWithTag("BulletToRight");
                     BulletToLeft = GameObject.FindGameObjectWithTag("BulletToLeft");
                 }
-                Fire();
+
+                isFiring = true;
                 nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
             }
 
@@ -120,13 +124,24 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         }
     }
 
-    void Fire()
+    IEnumerator Firing()
     {
-        bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
-        int bulletForce = bullet.gameObject.GetComponent<BulletScript>().BulletForce;
-        bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(input.normalized * bulletForce, ForceMode2D.Impulse);
+        while (true)
+        {
+            if (isFiring && Time.time > nextFire)
+            {
+                Debug.Log("Firing");
+                bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+                bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
+                nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
+                int bulletForce = bullet.gameObject.GetComponent<BulletScript>().BulletForce;
+                bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(input.normalized * bulletForce, ForceMode2D.Impulse);
+            }
+            yield return new WaitForSeconds(0.05f);
+        }
     }
+
+    private bool isFiring = false;
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
@@ -192,6 +207,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         }
         else
         {
+            // Stop firing
+            isFiring = false;
         }
 
     }

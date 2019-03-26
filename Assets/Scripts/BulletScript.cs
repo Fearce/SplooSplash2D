@@ -33,8 +33,13 @@ namespace Assets.Scripts
                     break;
                 case GunTypes.Pistol2:
                     Damage = 55;
+                    BulletForce = 12;
+                    FireRate = 0.55f;
                     break;
                 case GunTypes.Pistol3:
+                    Damage = 30;
+                    BulletForce = 8;
+                    FireRate = 0.2f;
                     break;
                 case GunTypes.Pistol4:
                     break;
@@ -122,7 +127,7 @@ namespace Assets.Scripts
                 Debug.Log("Bullet collided with " + otherObject);
                 Destroy(gameObject);
                 sw.Stop();
-                Debug.Log($"Bullet survived for {sw.Elapsed}");
+                Debug.Log($"Bullet fr {FireRate}, bf {BulletForce}, dmg {Damage} - survived for {sw.Elapsed}");
                 if (collision.gameObject.tag == "Enemy")
                 {
                     //Destroy(collision.gameObject);

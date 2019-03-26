@@ -11,6 +11,7 @@ namespace Assets.Scripts
     {
         public static bool FacingRight = true;
         public static GunTypes CurrentWeapon = GunTypes.Pistol1;
+        private GameObject Weapon;
 
         public int Lives;
 
@@ -38,6 +39,7 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            Weapon = GameObject.FindGameObjectWithTag("Weapon");
             //DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
             //DeadPanel.SetActive(false);
             Player = GetComponent<Transform>();
@@ -66,6 +68,11 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            pointText.text = "POINTS: " + points;
+            if (points % 50 == 0)
+            {
+                SetWeapon();
+            }
             FixJumpingBug();
             HpText.text = "HP: " + Lives;
 
@@ -117,6 +124,22 @@ namespace Assets.Scripts
             }
         }
 
+        private void SetWeapon()
+        {
+            Sprite[] sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
+            if (points >= 100)
+            {
+                CurrentWeapon = GunTypes.Pistol3;
+                Weapon.GetComponent<SpriteRenderer>().sprite = sprites[18];
+
+            }
+            else if (points >= 50)
+            {
+                CurrentWeapon = GunTypes.Pistol2;
+                Weapon.GetComponent<SpriteRenderer>().sprite = sprites[17];
+            }
+        }
+
 
         // Collision
         void OnCollisionEnter2D(Collision2D coll)
@@ -157,9 +180,20 @@ namespace Assets.Scripts
             }
         }
 
+        public int points;
+
+        public Text pointText;
+
         public void OnTriggerEnter2D(Collider2D other)
         {
-            // Hitting cherries. Should points be in here too instead of separate script?
+            // Hitting points
+            if (other.gameObject.tag == "Points")
+            {
+                Destroy(other.gameObject);
+                points++;
+                pointText.text = "POINTS: " + points;
+            }
+            // Hitting cherries
             if (other.gameObject.tag == "Cherry")
             {
                 Destroy(other.gameObject);
