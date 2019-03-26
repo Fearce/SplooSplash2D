@@ -11,6 +11,8 @@ TagManager:
   - AttackStick
   - BulletToLeft
   - BulletToRight
+  - Points
+  - Cherry
   layers:
   - Default
   - TransparentFX
