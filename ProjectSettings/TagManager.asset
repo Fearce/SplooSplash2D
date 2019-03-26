@@ -13,6 +13,7 @@ TagManager:
   - BulletToRight
   - Points
   - Cherry
+  - Weapon
   layers:
   - Default
   - TransparentFX

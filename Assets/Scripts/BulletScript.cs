@@ -24,18 +24,24 @@ public class BulletScript : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        string otherObject = collision.gameObject.name;
-        Debug.Log("Bullet collided with " + otherObject);
-        Destroy(gameObject);
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag != "Points")
         {
-            //Destroy(collision.gameObject);
+            string otherObject = collision.gameObject.name;
+            Debug.Log("Bullet collided with " + otherObject);
+            Destroy(gameObject);
+            if (collision.gameObject.tag == "Enemy")
+            {
+                //Destroy(collision.gameObject);
+            }
         }
     }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Colliosion on bullet detected");
-        Destroy(gameObject);
+        if (other.gameObject.tag != "Points")
+        {
+            Debug.Log("Colliosion on bullet detected");
+            Destroy(gameObject);
+        }
     }
 }
