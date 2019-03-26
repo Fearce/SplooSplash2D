@@ -7,6 +7,7 @@ using Debug = UnityEngine.Debug;
 
 public class BulletScript : MonoBehaviour
 {
+    public int Damage = 50;
     public float velX = 5f;
     private float velY = 0f;
     private Rigidbody2D rb;

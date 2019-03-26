@@ -13,6 +13,7 @@ public class EnemyScript : MonoBehaviour
 
     public Rigidbody2D PlayerBody;
     public float JumpForce = 8f;
+    public int Health = 100;
 
     private bool IsJumping;
 
@@ -28,6 +29,15 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Health <= 0)
+        {
+            Debug.Log("ded ghost");
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y, -3.29f);
+            Instantiate(BloodSplash, pos, Quaternion.identity);
+            Splatter splatterObj = (Splatter)Instantiate(splatter, pos, Quaternion.identity);
+            Destroy(gameObject);
+        }
+
         gameObject.transform.rotation = new Quaternion();
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
@@ -53,12 +63,8 @@ public class EnemyScript : MonoBehaviour
 
         if (coll.gameObject.tag.Contains("Bullet"))
         {
-            Debug.Log("ded ghost");
-            Vector3 pos = new Vector3(transform.position.x,transform.position.y, -3.29f);
-            Instantiate(BloodSplash, pos, Quaternion.identity);
-            Splatter splatterObj = (Splatter)Instantiate(splatter, pos, Quaternion.identity);
-
-            Destroy(gameObject);
+            Debug.Log("ghost takin dmg!");
+            Health -= coll.gameObject.GetComponent<BulletScript>().Damage;
         }
 
         if (coll.gameObject.tag == "Player")
