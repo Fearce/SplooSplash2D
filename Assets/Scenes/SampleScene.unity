@@ -4276,7 +4276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &178133865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17549,8 +17549,8 @@ Transform:
   - {fileID: 1714868251}
   - {fileID: 516684567}
   - {fileID: 656007217}
-  - {fileID: 182753466}
   - {fileID: 363397}
+  - {fileID: 182753466}
   - {fileID: 5742944}
   - {fileID: 2126595601}
   - {fileID: 75381294}
