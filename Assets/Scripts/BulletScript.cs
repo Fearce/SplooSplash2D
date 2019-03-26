@@ -11,6 +11,8 @@ namespace Assets.Scripts
     public class BulletScript : MonoBehaviour
     {
         public int Damage;
+        public int BulletForce;
+        public float FireRate;
         public float velX = 5f;
         private float velY = 0f;
         private Rigidbody2D rb;
@@ -24,6 +26,8 @@ namespace Assets.Scripts
             {
                 case GunTypes.Pistol1:
                     Damage = 50;
+                    BulletForce = 10;
+                    FireRate = 0.5f;
                     break;
                 case GunTypes.Pistol2:
                     Damage = 55;

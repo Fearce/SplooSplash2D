@@ -11556,12 +11556,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f33040c81b5547897064196dbead6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  distance: 3
-  splatter: {fileID: 11466376, guid: 273acd9f54f187a48a419d6b81376337, type: 3}
-  target: {fileID: 0}
-  PlayerBody: {fileID: 0}
+  Speed: 2
+  Distance: 0
+  Splatter: {fileID: 11466376, guid: 273acd9f54f187a48a419d6b81376337, type: 3}
+  Target: {fileID: 694411239}
+  GhostBody: {fileID: 0}
   JumpForce: 8
+  Health: 100
   BloodSplash: {fileID: 5811877807928797068, guid: 5910f0db2400ecd4a9a2a3956cb313b2,
     type: 3}
 --- !u!1001 &481022741
@@ -17548,11 +17549,10 @@ Transform:
   - {fileID: 861085075}
   - {fileID: 1714868251}
   - {fileID: 516684567}
-  - {fileID: 656007217}
   - {fileID: 363397}
-  - {fileID: 182753466}
   - {fileID: 5742944}
   - {fileID: 2126595601}
+  - {fileID: 182753466}
   - {fileID: 75381294}
   - {fileID: 224821221}
   - {fileID: 577162738}
@@ -17635,6 +17635,7 @@ Transform:
   - {fileID: 850674679}
   - {fileID: 1508696129}
   - {fileID: 2126259745}
+  - {fileID: 656007217}
   - {fileID: 72803641}
   - {fileID: 1197709258}
   - {fileID: 407820591}
@@ -30472,9 +30473,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4404505e14a994aad7f9c23ca36958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifes: 3
-  hpText: {fileID: 1609119911}
-  deadPanel: {fileID: 1407419717}
+  Lives: 3
+  HpText: {fileID: 1609119911}
+  DeadPanel: {fileID: 1407419717}
   MoveSpeed: 0.05
   JumpForce: 8
   PlayerBody: {fileID: 0}
@@ -47361,7 +47362,7 @@ GameObject:
   - component: {fileID: 1407419721}
   m_Layer: 5
   m_Name: deadboi
-  m_TagString: Untagged
+  m_TagString: DeadBoi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108801,7 +108802,7 @@ GameObject:
   - component: {fileID: 1609119911}
   m_Layer: 5
   m_Name: HPText
-  m_TagString: Untagged
+  m_TagString: HPText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120961,6 +120962,11 @@ PrefabInstance:
     - target: {fileID: 4355853462374124282, guid: ad6918f23a65a5e40a47060597e520a2,
         type: 3}
       propertyPath: m_Name
+      value: HPText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355853462374124282, guid: ad6918f23a65a5e40a47060597e520a2,
+        type: 3}
+      propertyPath: m_TagString
       value: HPText
       objectReference: {fileID: 0}
     - target: {fileID: 4355853462374124281, guid: ad6918f23a65a5e40a47060597e520a2,

@@ -63,10 +63,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         OnDrag(eventData);
     }
 
-    public float fireRate = 0.5f;
+    public float fireRate = 0.0f;
     private float nextFire = 0.0f;
     private Vector2 bulletPos;
     public GameObject BulletToRight, BulletToLeft;
+    private GameObject bullet;
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -95,8 +96,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                     BulletToRight = GameObject.FindGameObjectWithTag("BulletToRight");
                     BulletToLeft = GameObject.FindGameObjectWithTag("BulletToLeft");
                 }
-                nextFire = Time.time + fireRate;
                 Fire();
+                nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
             }
         }
     }
@@ -104,8 +105,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     void Fire()
     {
         bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        GameObject bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
-        bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(input.normalized * 10, ForceMode2D.Impulse);
+        bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
+        int bulletForce = bullet.gameObject.GetComponent<BulletScript>().BulletForce;
+        bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(input.normalized * bulletForce, ForceMode2D.Impulse);
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)

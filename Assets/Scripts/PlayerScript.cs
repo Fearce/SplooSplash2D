@@ -37,7 +37,10 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            //DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
+            //DeadPanel.SetActive(false);
             Player = GetComponent<Transform>();
+            HpText = GameObject.FindGameObjectWithTag("HPText").GetComponent<Text>();
             PlayerBody = gameObject.GetComponent<Rigidbody2D>();
             myAnim = GetComponent<Animator>();
 
@@ -55,7 +58,7 @@ namespace Assets.Scripts
             {
                 lastJump = DateTime.UtcNow;
                 isJumping = false;
-                Debug.Log("jump fixed");
+                // Debug.Log("jump fixed");
             }
         }
 
