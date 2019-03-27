@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
@@ -102,7 +103,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 }
 
                 isFiring = true;
-                nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
+                if (bullet != null) nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
             }
 
             // Rotate weapon
@@ -124,20 +125,48 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         }
     }
 
+    public static int MaxAmmo = 8;
+    public static int AmmoCount = MaxAmmo;
+    private bool isReloading = false;
+
     IEnumerator Firing()
     {
         while (true)
         {
-            if (isFiring && Time.time > nextFire)
+            if (isFiring && Time.time > nextFire && AmmoCount>0)
             {
                 Debug.Log("Firing");
                 bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
                 bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
+                AmmoCount--;
+                GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Ammo: {AmmoCount}/{MaxAmmo}";
                 nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
                 int bulletForce = bullet.gameObject.GetComponent<BulletScript>().BulletForce;
                 bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(input.normalized * bulletForce, ForceMode2D.Impulse);
             }
-            yield return new WaitForSeconds(0.05f);
+
+            if (AmmoCount == 0 && !isReloading)
+            {
+                StartCoroutine("Reload");
+            }
+
+            if (!isReloading) GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Ammo: {AmmoCount}/{MaxAmmo}";
+            yield return new WaitForSeconds(0.005f);
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        if (!isReloading)
+        {
+            isReloading = true;
+            Debug.Log("Reloading");
+            GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Reloading!";
+            yield return new WaitForSeconds(bullet.gameObject.GetComponent<BulletScript>().ReloadSpeed);
+            AmmoCount = MaxAmmo;
+            isReloading = false;
+            GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Ammo: {AmmoCount}/{MaxAmmo}";
+            Debug.Log("Reload complete");
         }
     }
 

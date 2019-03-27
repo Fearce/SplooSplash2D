@@ -15,6 +15,8 @@ namespace Assets.Scripts
         public int Damage;
         public int BulletForce;
         public float FireRate;
+        public float ReloadSpeed;
+
         public float velX = 5f;
         private float velY = 0f;
         private Rigidbody2D rb;
@@ -30,16 +32,22 @@ namespace Assets.Scripts
                     Damage = 50;
                     BulletForce = 10;
                     FireRate = 0.5f;
+                    ReloadSpeed = 3;
+                    Joystick.MaxAmmo = 8;
                     break;
                 case GunTypes.Pistol2:
                     Damage = 55;
                     BulletForce = 12;
                     FireRate = 0.55f;
+                    ReloadSpeed = 2.5f;
+                    Joystick.MaxAmmo = 12;
                     break;
                 case GunTypes.Pistol3:
                     Damage = 30;
                     BulletForce = 8;
-                    FireRate = 0.2f;
+                    FireRate = 0.01f;
+                    ReloadSpeed = 1.5f;
+                    Joystick.MaxAmmo = 20;
                     break;
                 case GunTypes.Pistol4:
                     break;

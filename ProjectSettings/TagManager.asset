@@ -18,6 +18,7 @@ TagManager:
   - DeadBoi
   - Trap
   - PointsText
+  - AmmoText
   layers:
   - Default
   - TransparentFX
