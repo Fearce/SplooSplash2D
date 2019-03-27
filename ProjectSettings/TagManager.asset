@@ -17,6 +17,7 @@ TagManager:
   - HPText
   - DeadBoi
   - Trap
+  - PointsText
   layers:
   - Default
   - TransparentFX

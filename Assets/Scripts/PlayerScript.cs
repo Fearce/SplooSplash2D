@@ -39,6 +39,7 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            pointText = GameObject.FindGameObjectWithTag("PointsText").GetComponent<Text>();
             Weapon = GameObject.FindGameObjectWithTag("Weapon");
             //DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
             //DeadPanel.SetActive(false);
