@@ -13310,7 +13310,7 @@ GameObject:
   - component: {fileID: 518330084}
   m_Layer: 5
   m_Name: pointsText
-  m_TagString: Untagged
+  m_TagString: PointsText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31311,6 +31311,8 @@ MonoBehaviour:
   MoveSpeed: 0.05
   JumpForce: 8
   PlayerBody: {fileID: 0}
+  points: 0
+  pointText: {fileID: 0}
 --- !u!95 &694411241
 Animator:
   serializedVersion: 3
@@ -31342,8 +31344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626830df8dc0e9240a60260b8dd37e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 0
-  pointText: {fileID: 518330084}
 --- !u!1001 &695409927
 PrefabInstance:
   m_ObjectHideFlags: 0
