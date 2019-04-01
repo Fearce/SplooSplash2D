@@ -10,6 +10,13 @@ public class hpManager : MonoBehaviour
 
     public Text hpText;
 
+    private Animator hitAnim;
+
+    private void Start()
+    {
+        hitAnim = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         hpText.text = "HP: " + lifes;
@@ -32,9 +39,11 @@ public class hpManager : MonoBehaviour
 
         if(other.gameObject.tag == "Enemy")
         {
+            hitAnim.SetBool("hit", true);
             lifes--;
             Debug.Log(lifes);
             hpText.text = "HP: " + lifes;
+            //hitAnim.SetBool("hit", false);
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Assets.Scripts
         private bool isDead;
 
         private Animator myAnim;
+        private Animator hitAnim;
 
         public Transform Player { get; set; }
 
@@ -47,7 +48,7 @@ namespace Assets.Scripts
             HpText = GameObject.FindGameObjectWithTag("HPText").GetComponent<Text>();
             PlayerBody = gameObject.GetComponent<Rigidbody2D>();
             myAnim = GetComponent<Animator>();
-
+            hitAnim = GetComponent<Animator>();
         }
 
         /// <summary>
@@ -171,6 +172,7 @@ namespace Assets.Scripts
                 isJumping = false;
                 if (Lives > 0)
                 {
+                    hitAnim.SetBool("hit", true);
                     Lives--;
                 }
                 Debug.Log(Lives);
