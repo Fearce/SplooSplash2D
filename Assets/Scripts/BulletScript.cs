@@ -27,6 +27,7 @@ namespace Assets.Scripts
             // Set Weapon properties
             switch (PlayerScript.CurrentWeapon)
             {
+                // MaxAmmo is set in PlayerScript.cs SetWeapon()
                 case GunTypes.Pistol1:
                     Damage = 50;
                     BulletForce = 10;
