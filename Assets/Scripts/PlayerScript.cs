@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +33,6 @@ namespace Assets.Scripts
         private bool isDead;
 
         private Animator myAnim;
-        private Animator hitAnim;
 
         public Transform Player { get; set; }
 
@@ -47,8 +47,7 @@ namespace Assets.Scripts
             Player = GetComponent<Transform>();
             HpText = GameObject.FindGameObjectWithTag("HPText").GetComponent<Text>();
             PlayerBody = gameObject.GetComponent<Rigidbody2D>();
-            myAnim = GetComponent<Animator>();
-            hitAnim = GetComponent<Animator>();
+            myAnim = GetComponent<Animator>();   
         }
 
         /// <summary>
@@ -172,8 +171,10 @@ namespace Assets.Scripts
                 isJumping = false;
                 if (Lives > 0)
                 {
-                    hitAnim.SetBool("hit", true);
+                    //myAnim.SetBool("hit", true);
+                    Hurt();
                     Lives--;
+                    
                 }
                 Debug.Log(Lives);
                 HpText.text = "HP: " + Lives;
@@ -185,6 +186,14 @@ namespace Assets.Scripts
                 }
             
             }
+        }
+
+        IEnumerator Hurt()
+        {
+            myAnim.SetBool("hit", true);
+            Debug.Log("Hit");
+            yield return new WaitForSeconds(0.5f);
+            myAnim.SetBool("hit", false);
         }
 
         public int points;
@@ -209,6 +218,8 @@ namespace Assets.Scripts
                 HpText.text = "HP: " + Lives;
             }
         }
+
+        
 
     }
 }
