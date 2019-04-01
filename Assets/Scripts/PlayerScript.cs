@@ -47,7 +47,8 @@ namespace Assets.Scripts
             Player = GetComponent<Transform>();
             HpText = GameObject.FindGameObjectWithTag("HPText").GetComponent<Text>();
             PlayerBody = gameObject.GetComponent<Rigidbody2D>();
-            myAnim = GetComponent<Animator>();   
+            myAnim = GetComponent<Animator>();
+            
         }
 
         /// <summary>
@@ -171,7 +172,9 @@ namespace Assets.Scripts
                 isJumping = false;
                 if (Lives > 0)
                 {
-                    //myAnim.SetBool("hit", true);
+                    //Starts the method Hurt
+                    StartCoroutine("Hurt");
+                    //Set the parameter hit to true, after 1.5 sec to false
                     Hurt();
                     Lives--;
                     
@@ -192,7 +195,7 @@ namespace Assets.Scripts
         {
             myAnim.SetBool("hit", true);
             Debug.Log("Hit");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
             myAnim.SetBool("hit", false);
         }
 
