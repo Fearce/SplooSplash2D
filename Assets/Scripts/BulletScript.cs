@@ -14,7 +14,6 @@ namespace Assets.Scripts
     {
         public int Damage;
         public int BulletForce;
-        public float FireRate;
         public float ReloadSpeed;
 
         public float velX = 5f;
@@ -31,23 +30,20 @@ namespace Assets.Scripts
                 case GunTypes.Pistol1:
                     Damage = 50;
                     BulletForce = 10;
-                    FireRate = 0.5f;
+                    Joystick.FireRate = 0.8f;
                     ReloadSpeed = 3;
-                    Joystick.MaxAmmo = 8;
                     break;
                 case GunTypes.Pistol2:
                     Damage = 55;
                     BulletForce = 12;
-                    FireRate = 0.55f;
+                    Joystick.FireRate = 0.55f;
                     ReloadSpeed = 2.5f;
-                    Joystick.MaxAmmo = 12;
                     break;
                 case GunTypes.Pistol3:
                     Damage = 30;
                     BulletForce = 8;
-                    FireRate = 0.01f;
+                    Joystick.FireRate = 0.2f;
                     ReloadSpeed = 1.5f;
-                    Joystick.MaxAmmo = 20;
                     break;
                 case GunTypes.Pistol4:
                     break;
@@ -113,7 +109,7 @@ namespace Assets.Scripts
                     throw new ArgumentOutOfRangeException();
             }
 
-            
+
             //velocity = Vector2.zero;
             // Ignore bullet collision with Player
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(),GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>());
@@ -125,6 +121,7 @@ namespace Assets.Scripts
         void Update()
         {
             //rb.velocity = new Vector2(velX, velY);
+
         }
 
         public void OnCollisionEnter2D(Collision2D collision)
@@ -135,7 +132,7 @@ namespace Assets.Scripts
                 Debug.Log("Bullet collided with " + otherObject);
                 Destroy(gameObject);
                 sw.Stop();
-                Debug.Log($"Bullet fr {FireRate}, bf {BulletForce}, dmg {Damage} - survived for {sw.Elapsed}");
+                Debug.Log($"Bullet fr {Joystick.FireRate}, bf {BulletForce}, dmg {Damage} - survived for {sw.Elapsed}");
                 if (collision.gameObject.tag == "Enemy")
                 {
                     //Destroy(collision.gameObject);

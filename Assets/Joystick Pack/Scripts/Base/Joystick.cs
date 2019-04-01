@@ -103,7 +103,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 }
 
                 isFiring = true;
-                if (bullet != null) nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
+                if (bullet != null) nextFire = Time.time + FireRate;
             }
 
             // Rotate weapon
@@ -126,6 +126,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     }
 
     public static int MaxAmmo = 8;
+    public static float FireRate = 0.5f;
     public static int AmmoCount = MaxAmmo;
     private bool isReloading = false;
 
@@ -140,7 +141,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
                 AmmoCount--;
                 GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Ammo: {AmmoCount}/{MaxAmmo}";
-                nextFire = Time.time + bullet.gameObject.GetComponent<BulletScript>().FireRate;
+                nextFire = Time.time + FireRate;
                 int bulletForce = bullet.gameObject.GetComponent<BulletScript>().BulletForce;
                 bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(input.normalized * bulletForce, ForceMode2D.Impulse);
             }

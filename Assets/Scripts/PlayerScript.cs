@@ -128,16 +128,20 @@ namespace Assets.Scripts
         private void SetWeapon()
         {
             Sprite[] sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
-            if (points >= 100)
+            if (points >= 100 && Weapon.GetComponent<SpriteRenderer>().sprite != sprites[18])
             {
                 CurrentWeapon = GunTypes.Pistol3;
                 Weapon.GetComponent<SpriteRenderer>().sprite = sprites[18];
+                Joystick.MaxAmmo = 20;
+                Joystick.AmmoCount = Joystick.MaxAmmo;
 
             }
-            else if (points >= 50)
+            else if (points < 100 && points >= 50 && Weapon.GetComponent<SpriteRenderer>().sprite != sprites[17])
             {
                 CurrentWeapon = GunTypes.Pistol2;
                 Weapon.GetComponent<SpriteRenderer>().sprite = sprites[17];
+                Joystick.MaxAmmo = 12;
+                Joystick.AmmoCount = Joystick.MaxAmmo;
             }
         }
 
