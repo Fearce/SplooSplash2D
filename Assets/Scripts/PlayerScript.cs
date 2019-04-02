@@ -41,6 +41,7 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
             pointText = GameObject.FindGameObjectWithTag("PointsText").GetComponent<Text>();
             Weapon = GameObject.FindGameObjectWithTag("Weapon");
             //DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
@@ -138,10 +139,10 @@ namespace Assets.Scripts
         }
 
         private float weaponUnlocked;
+        private Sprite[] sprites;
 
         private void SetWeapon()
         {
-            Sprite[] sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
             if (points >= 100 && Weapon.GetComponent<SpriteRenderer>().sprite != sprites[18])
             {
                 GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Tec9 unlocked!";

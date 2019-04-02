@@ -136,12 +136,12 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         {
             if (isFiring && Time.time > nextFire && AmmoCount>0)
             {
+                nextFire = Time.time + FireRate;
                 Debug.Log("Firing");
                 bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
                 bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
                 AmmoCount--;
                 GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Ammo: {AmmoCount}/{MaxAmmo}";
-                nextFire = Time.time + FireRate;
                 int bulletForce = bullet.gameObject.GetComponent<BulletScript>().BulletForce;
                 bullet.gameObject.GetComponent<Rigidbody2D>().AddForce(input.normalized * bulletForce, ForceMode2D.Impulse);
             }

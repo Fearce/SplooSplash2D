@@ -110,10 +110,16 @@ namespace Assets.Scripts
                     throw new ArgumentOutOfRangeException();
             }
 
-
+            GameObject[] bullets = GameObject.FindGameObjectsWithTag("BulletToRight");
             //velocity = Vector2.zero;
             // Ignore bullet collision with Player
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(),GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>());
+            if (bullets != null)
+                foreach (var bullet in bullets)
+                {
+                    Physics2D.IgnoreCollision(GetComponent<Collider2D>(), bullet.GetComponent<Collider2D>());
+                }
+
             rb = GetComponent<Rigidbody2D>();
             sw.Start();
         }
