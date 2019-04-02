@@ -5,18 +5,28 @@ using UnityEngine;
 
 public class PortalSpawn : MonoBehaviour
 {
-    public EnemyScript Enemy;
+    public GameObject enemy;
+    private float spawnX;
+    private Vector2 whereEnemySpawn;
 
-    public Rigidbody2D Rigidbody2D;
+    public float spawnRate = 1f;
+
+    private float nextSpawn = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Time.time > nextSpawn)
+        {
+            nextSpawn = Time.time + spawnRate;
+            GameObject ps = GameObject.FindGameObjectWithTag("PortalSpawn");
+            spawnX = ps.transform.position.x;
+            whereEnemySpawn = new Vector2(spawnX, transform.position.y);
+            Instantiate(enemy, whereEnemySpawn, Quaternion.identity);
+        }
     }
 }

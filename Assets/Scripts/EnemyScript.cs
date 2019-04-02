@@ -7,6 +7,11 @@ namespace Assets.Scripts
     /// </summary>
     public class EnemyScript : MonoBehaviour
     {
+
+        // Hmm, setter vi nogensinde Speed & Distance? Så vidt jeg kan se er de altid 0
+        public float Speed;
+        public float Distance;
+        
         public Splatter Splatter;
         public Transform Target;
 
