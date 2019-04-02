@@ -203,13 +203,16 @@ namespace Assets.Scripts
             if (Lives != 1)
             {
                 HurtPanel.SetActive(true);
+                HurtPanel.transform.localScale = Vector3.one;
                 Debug.Log("Hit");
                 yield return new WaitForSeconds(0.1f);
                 HurtPanel.SetActive(false);
+                HurtPanel.transform.localScale = Vector3.zero;
             }
             else
             {
                 HurtPanel.SetActive(false);
+                HurtPanel.transform.localScale = Vector3.zero;
             }
         }
 
