@@ -11,7 +11,7 @@ public class PortalSpawn : MonoBehaviour
     private Vector2 whereEnemySpawn;
 
     public float spawnRate;
-
+    private int counter = 0;
     public float nextSpawn;
     private Animator spawnAnim;
     // Start is called before the first frame update
@@ -24,22 +24,39 @@ public class PortalSpawn : MonoBehaviour
     // Update is called once per frame
     public void GhostSpawn()
     {
-        StartCoroutine("SpawnAnim");
-        SpawnAnim();
+        
+            StartCoroutine("SpawnAnim");
+            SpawnAnim();
+            counter++;
+        
+
     }
 
     IEnumerator SpawnAnim()
     {
-        spawnAnim.SetBool("enemy", true);
-        GameObject ps = GameObject.FindGameObjectWithTag("PortalSpawn");
-        spawnX = ps.transform.position.x;
-        whereEnemySpawn = new Vector2(spawnX, transform.position.y);
-        yield return new WaitForSeconds(1f);
-        Instantiate(enemy, whereEnemySpawn, Quaternion.identity);
-        spawnAnim.SetBool("enemy", false);
-        if (stopSpawn)
+        if (counter < 6)
         {
-            CancelInvoke("GhostSpawn");
+            spawnAnim.SetBool("enemy", true);
+            GameObject ps = GameObject.FindGameObjectWithTag("PortalSpawn");
+            spawnX = ps.transform.position.x;
+            whereEnemySpawn = new Vector2(spawnX, transform.position.y);
+            yield return new WaitForSeconds(1f);
+            Instantiate(enemy, whereEnemySpawn, Quaternion.identity);
+            spawnAnim.SetBool("enemy", false);
+            if (stopSpawn)
+            {
+                CancelInvoke("GhostSpawn");
+            }
+
+            Debug.Log(counter);
+        }
+        else
+        {
+            yield return new WaitForSeconds(10f);
+            if (counter > 5)
+            {
+                counter = 0;
+            }
         }
     }
 }

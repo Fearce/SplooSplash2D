@@ -31229,7 +31229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4404505e14a994aad7f9c23ca36958, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Lives: 3
+  Lives: 14324323
   HpText: {fileID: 1609119911}
   DeadPanel: {fileID: 1407419717}
   MoveSpeed: 0.05
@@ -124542,16 +124542,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3167183231201737837, guid: 2fbb01fba620b7340932c9acd172befd,
-        type: 3}
-      propertyPath: m_Mass
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 3167183231201737810, guid: 2fbb01fba620b7340932c9acd172befd,
         type: 3}
       propertyPath: Target
       value: 
       objectReference: {fileID: 694411239}
+    - target: {fileID: 3167183231201737811, guid: 2fbb01fba620b7340932c9acd172befd,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 694411239}
+    - target: {fileID: 3167183231201737837, guid: 2fbb01fba620b7340932c9acd172befd,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3167183231201737808, guid: 2fbb01fba620b7340932c9acd172befd,
         type: 3}
       propertyPath: switchPathInterpolationSpeed
@@ -124562,11 +124567,6 @@ PrefabInstance:
       propertyPath: speed
       value: 2.5
       objectReference: {fileID: 0}
-    - target: {fileID: 3167183231201737811, guid: 2fbb01fba620b7340932c9acd172befd,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 694411239}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fbb01fba620b7340932c9acd172befd, type: 3}
 --- !u!1001 &4355853461353280095
