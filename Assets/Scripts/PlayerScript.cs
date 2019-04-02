@@ -72,6 +72,15 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            // Reset statustext
+            if (weaponUnlocked + 2 < Time.time &&
+                GameObject.FindGameObjectWithTag("StatusText").transform.localScale == Vector3.one &&
+                GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text != "Reloading!")
+            {
+                GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.zero;
+                weaponUnlocked = Time.time;
+            }
+
             pointText.text = "POINTS: " + points;
             if (points % 50 == 0)
             {
@@ -128,11 +137,16 @@ namespace Assets.Scripts
             }
         }
 
+        private float weaponUnlocked;
+
         private void SetWeapon()
         {
             Sprite[] sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
             if (points >= 100 && Weapon.GetComponent<SpriteRenderer>().sprite != sprites[18])
             {
+                GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Tec9 unlocked!";
+                GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+                weaponUnlocked = Time.time;
                 CurrentWeapon = GunTypes.Pistol3;
                 Weapon.GetComponent<SpriteRenderer>().sprite = sprites[18];
                 Joystick.MaxAmmo = 20;
@@ -141,6 +155,9 @@ namespace Assets.Scripts
             }
             else if (points < 100 && points >= 50 && Weapon.GetComponent<SpriteRenderer>().sprite != sprites[17])
             {
+                GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Deagle unlocked!";
+                GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+                weaponUnlocked = Time.time;
                 CurrentWeapon = GunTypes.Pistol2;
                 Weapon.GetComponent<SpriteRenderer>().sprite = sprites[17];
                 Joystick.MaxAmmo = 12;
