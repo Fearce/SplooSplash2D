@@ -32331,6 +32331,7 @@ GameObject:
   - component: {fileID: 728706952}
   - component: {fileID: 728706954}
   - component: {fileID: 728706955}
+  - component: {fileID: 728706956}
   m_Layer: 0
   m_Name: Portal
   m_TagString: PortalSpawn
@@ -32442,6 +32443,25 @@ MonoBehaviour:
   stopSpawn: 0
   spawnRate: 1.5
   nextSpawn: 2
+--- !u!95 &728706956
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728706951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2fad9dd20e15efb489788cce832bb481, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &733794955
 PrefabInstance:
   m_ObjectHideFlags: 0
