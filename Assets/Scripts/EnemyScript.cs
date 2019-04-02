@@ -82,10 +82,6 @@ namespace Assets.Scripts
             if (coll.gameObject.tag == "Player")
             {
                 Debug.Log("Collision with Player");
-                //Destroy(coll.gameObject, 2.1f);
-                //points++;
-                //GameObject.FindGameObjectWithTag("Text").GetComponent<Text>().text = "Score: " + points;
-                //score.text = "Score: " + points;
             }
 
         }

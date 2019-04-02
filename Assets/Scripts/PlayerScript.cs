@@ -204,7 +204,7 @@ namespace Assets.Scripts
             {
                 HurtPanel.SetActive(true);
                 Debug.Log("Hit");
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
                 HurtPanel.SetActive(false);
             }
             else
