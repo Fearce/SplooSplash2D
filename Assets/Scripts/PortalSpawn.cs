@@ -6,27 +6,30 @@ using UnityEngine;
 public class PortalSpawn : MonoBehaviour
 {
     public GameObject enemy;
+    public bool stopSpawn = false;
     private float spawnX;
     private Vector2 whereEnemySpawn;
 
-    public float spawnRate = 1f;
+    public float spawnRate;
 
-    private float nextSpawn = 0.0f;
+    public float nextSpawn;
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("GhostSpawn", spawnRate, nextSpawn);
     }
 
     // Update is called once per frame
-    void Update()
+    public void GhostSpawn()
     {
-        if (Time.time > nextSpawn)
-        {
-            nextSpawn = Time.time + spawnRate;
             GameObject ps = GameObject.FindGameObjectWithTag("PortalSpawn");
             spawnX = ps.transform.position.x;
             whereEnemySpawn = new Vector2(spawnX, transform.position.y);
             Instantiate(enemy, whereEnemySpawn, Quaternion.identity);
+        if (stopSpawn)
+        {
+            CancelInvoke("GhostSpawn");
         }
+     
     }
 }
