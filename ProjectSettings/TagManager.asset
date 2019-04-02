@@ -21,6 +21,7 @@ TagManager:
   - AmmoText
   - HurtPanel
   - PortalSpawn
+  - StatusText
   layers:
   - Default
   - TransparentFX

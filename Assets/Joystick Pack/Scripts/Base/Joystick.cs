@@ -162,11 +162,14 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         {
             isReloading = true;
             Debug.Log("Reloading");
+            GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Reloading!";
+            GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
             GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Reloading!";
             yield return new WaitForSeconds(bullet.gameObject.GetComponent<BulletScript>().ReloadSpeed);
             AmmoCount = MaxAmmo;
             isReloading = false;
             GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Ammo: {AmmoCount}/{MaxAmmo}";
+            GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.zero;
             Debug.Log("Reload complete");
         }
     }
