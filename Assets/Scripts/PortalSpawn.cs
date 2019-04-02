@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PortalSpawn : MonoBehaviour
 {
+    private GameObject player;
+
     public GameObject enemy;
     public bool stopSpawn = false;
     private Vector2 whereEnemySpawn;
@@ -15,10 +17,14 @@ public class PortalSpawn : MonoBehaviour
     public float nextSpawn;
     private Animator spawnAnim;
 
+    public float StartX;
+    public float StopX;
+
     public float RestartDelay;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         InvokeRepeating("GhostSpawn", spawnRate, nextSpawn);
         spawnAnim = GetComponent<Animator>();
         gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
@@ -27,12 +33,12 @@ public class PortalSpawn : MonoBehaviour
     // Update is called once per frame
     public void GhostSpawn()
     {
-        
+        if (player.transform.position.x > StartX && player.transform.position.x < StopX) 
+        {
             StartCoroutine("SpawnAnim");
             SpawnAnim();
             counter++;
-        
-
+        }
     }
     
 
