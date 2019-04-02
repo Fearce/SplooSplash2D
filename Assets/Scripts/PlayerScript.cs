@@ -92,7 +92,7 @@ namespace Assets.Scripts
             {
                 // Center camera on player
                 GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-                cam.transform.position = new Vector3(Player.position.x, cam.transform.position.y, -10f);
+                cam.transform.position = new Vector3(Player.position.x, Player.position.y, -10f);
 
                 // Fix rotation so we don't tilt
                 gameObject.transform.rotation = new Quaternion();
