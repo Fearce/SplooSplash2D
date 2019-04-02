@@ -20,6 +20,7 @@ TagManager:
   - PointsText
   - AmmoText
   - HurtPanel
+  - PortalSpawn
   layers:
   - Default
   - TransparentFX

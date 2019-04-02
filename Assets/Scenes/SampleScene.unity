@@ -32333,7 +32333,7 @@ GameObject:
   - component: {fileID: 728706955}
   m_Layer: 0
   m_Name: Portal
-  m_TagString: Untagged
+  m_TagString: PortalSpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32407,7 +32407,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728706951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -32438,8 +32438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b37a8e6d271c246bddb39bb5083dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 0}
-  Rigidbody2D: {fileID: 0}
+  enemy: {fileID: 1857182476}
+  spawnRate: 1
 --- !u!1001 &733794955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117370,6 +117370,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6524129528649836450, guid: 3a664807f9859964697eea658fbace17,
     type: 3}
   m_PrefabInstance: {fileID: 1854609761}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1857182476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3167183231201737833, guid: 2fbb01fba620b7340932c9acd172befd,
+    type: 3}
+  m_PrefabInstance: {fileID: 3167183231412904114}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1859372676
 PrefabInstance:
