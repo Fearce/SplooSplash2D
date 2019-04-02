@@ -124501,11 +124501,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3167183231201737837, guid: 2fbb01fba620b7340932c9acd172befd,
+        type: 3}
+      propertyPath: m_Mass
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3167183231201737810, guid: 2fbb01fba620b7340932c9acd172befd,
         type: 3}
       propertyPath: Target
       value: 
       objectReference: {fileID: 694411239}
+    - target: {fileID: 3167183231201737808, guid: 2fbb01fba620b7340932c9acd172befd,
+        type: 3}
+      propertyPath: switchPathInterpolationSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3167183231201737808, guid: 2fbb01fba620b7340932c9acd172befd,
+        type: 3}
+      propertyPath: speed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3167183231201737811, guid: 2fbb01fba620b7340932c9acd172befd,
         type: 3}
       propertyPath: target

@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f33040c81b5547897064196dbead6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seeker: {fileID: 0}
   Speed: 2
   Distance: 0
   Splatter: {fileID: 11466376, guid: 273acd9f54f187a48a419d6b81376337, type: 3}
@@ -197,7 +198,7 @@ MonoBehaviour:
   repathRate: Infinity
   canSearch: 1
   canMove: 1
-  speed: 4
+  speed: 2.5
   orientation: 1
   enableRotation: 1
   rotationSpeed: 30
