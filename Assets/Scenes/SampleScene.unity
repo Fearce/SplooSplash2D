@@ -32439,7 +32439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 1857182476}
-  spawnRate: 1
+  stopSpawn: 0
+  spawnRate: 1.5
+  nextSpawn: 4
 --- !u!1001 &733794955
 PrefabInstance:
   m_ObjectHideFlags: 0
