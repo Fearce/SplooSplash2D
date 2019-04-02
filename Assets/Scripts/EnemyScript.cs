@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using Pathfinding;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -7,11 +9,11 @@ namespace Assets.Scripts
     /// </summary>
     public class EnemyScript : MonoBehaviour
     {
-
+        public Seeker seeker;
         // Hmm, setter vi nogensinde Speed & Distance? Så vidt jeg kan se er de altid 0
         public float Speed;
         public float Distance;
-        
+
         public Splatter Splatter;
         public Transform Target;
 
@@ -20,12 +22,26 @@ namespace Assets.Scripts
         public int Health = 100;
 
         private bool isJumping;
-        
+
+        private Animator pacAnim;
         // Start is called before the first frame update
         void Start()
         {
+            seeker = GetComponent<Seeker>();
             GhostBody = gameObject.GetComponent<Rigidbody2D>();
             Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            pacAnim = Target.GetComponent<Animator>();
+            StartCoroutine("GoToPlayer");
+            //seeker.StartPath(transform.position, Target.position, OnPathComplete);
+        }
+
+        IEnumerator GoToPlayer()
+        {
+            while (true)
+            {
+                seeker.StartPath(transform.position, Target.position, OnPathComplete);
+                yield return new WaitForSeconds(0.5f);
+            }
         }
 
         // Update is called once per frame
@@ -42,19 +58,34 @@ namespace Assets.Scripts
             }
 
             // Make sure ghost isn't tilted
-            gameObject.transform.rotation = new Quaternion();
+            // gameObject.transform.rotation = new Quaternion();
 
             // Move towards target
-            if (GameObject.FindGameObjectWithTag("Player") != null)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
-            }
+            //if (GameObject.FindGameObjectWithTag("Player") != null)
+            //{
+            //    transform.position = Vector2.MoveTowards(transform.position, Target.position, Speed * Time.deltaTime);
+            //}
 
-            // Jump if target is above
-            if (Target != null && (Vector2.Distance(transform.position, Target.position) < Distance && isJumping == false))
+            //// Jump if target is above
+            //if (Target != null && (Vector2.Distance(transform.position, Target.position) < Distance && isJumping == false))
+            //{
+            //    GhostBody.AddForce(transform.up * JumpForce * 100);
+            //    isJumping = true;
+            //}
+        }
+
+        public void OnPathComplete(Path p)
+        {
+            // We got our path back
+            if (p.error)
             {
-                GhostBody.AddForce(transform.up * JumpForce * 100);
-                isJumping = true;
+                // Nooo, a valid path couldn't be found
+            }
+            else
+            {
+                // Yay, now we can get a Vector3 representation of the path
+                // from p.vectorPath
+
             }
         }
 
@@ -80,8 +111,6 @@ namespace Assets.Scripts
             if (coll.gameObject.tag == "Player")
             {
                 Debug.Log("Collision with Player");
-
-
             }
 
         }
