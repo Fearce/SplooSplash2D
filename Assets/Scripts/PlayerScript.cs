@@ -33,6 +33,7 @@ namespace Assets.Scripts
         private bool isDead;
 
         private Animator myAnim;
+        public GameObject HurtPanel;
 
         public Transform Player { get; set; }
 
@@ -48,7 +49,8 @@ namespace Assets.Scripts
             HpText = GameObject.FindGameObjectWithTag("HPText").GetComponent<Text>();
             PlayerBody = gameObject.GetComponent<Rigidbody2D>();
             myAnim = GetComponent<Animator>();
-            
+            HurtPanel = GameObject.FindGameObjectWithTag("HurtPanel");
+            HurtPanel.SetActive(false);
         }
 
         /// <summary>
@@ -172,8 +174,12 @@ namespace Assets.Scripts
                 isJumping = false;
                 if (Lives > 0)
                 {
+                    //Starts the method HurtPanelActive
+                    StartCoroutine("HurtPanelActive");
                     //Starts the method Hurt
                     StartCoroutine("Hurt");
+                    //Set the HurtPanel to blink when hit
+                    HurtPanelActive();
                     //Set the parameter hit to true, after 1.5 sec to false
                     Hurt();
                     Lives--;
@@ -192,13 +198,30 @@ namespace Assets.Scripts
             }
         }
 
+        IEnumerator HurtPanelActive()
+        {
+            if (Lives != 1)
+            {
+                HurtPanel.SetActive(true);
+                Debug.Log("Hit");
+                yield return new WaitForSeconds(0.5f);
+                HurtPanel.SetActive(false);
+            }
+            else
+            {
+                HurtPanel.SetActive(false);
+            }
+        }
+
         IEnumerator Hurt()
         {
             if (Lives != 1)
             {
                 myAnim.SetBool("hit", true);
+                //HurtPanel.SetActive(true);
                 Debug.Log("Hit");
                 yield return new WaitForSeconds(1f);
+                //HurtPanel.SetActive(false);
                 myAnim.SetBool("hit", false);
             }
             else
