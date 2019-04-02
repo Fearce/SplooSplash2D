@@ -21,6 +21,7 @@ TagManager:
   - AmmoText
   - HurtPanel
   - PortalSpawn
+  - AttackStickBG
   layers:
   - Default
   - TransparentFX
