@@ -7,18 +7,21 @@ public class PortalSpawn : MonoBehaviour
 {
     public GameObject enemy;
     public bool stopSpawn = false;
-    private float spawnX;
     private Vector2 whereEnemySpawn;
 
-    public float spawnRate;
+    private float spawnRate = 1;
+    public int amountGhosts;
     private int counter = 0;
     public float nextSpawn;
     private Animator spawnAnim;
+
+    public float RestartDelay;
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("GhostSpawn", spawnRate, nextSpawn);
         spawnAnim = GetComponent<Animator>();
+        gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
     }
 
     // Update is called once per frame
@@ -31,17 +34,18 @@ public class PortalSpawn : MonoBehaviour
         
 
     }
+    
 
     IEnumerator SpawnAnim()
     {
-        if (counter < 6)
+        if (counter < amountGhosts)
         {
             spawnAnim.SetBool("enemy", true);
-            GameObject ps = GameObject.FindGameObjectWithTag("PortalSpawn");
-            spawnX = ps.transform.position.x;
-            whereEnemySpawn = new Vector2(spawnX, transform.position.y);
+            whereEnemySpawn = new Vector2(gameObject.transform.position.x, transform.position.y);
             yield return new WaitForSeconds(1f);
-            Instantiate(enemy, whereEnemySpawn, Quaternion.identity);
+            GameObject ghost = Instantiate(enemy, whereEnemySpawn, Quaternion.identity);
+            ghost.GetComponent<SpriteRenderer>().color =
+                new Color(Random.Range(0, 256), Random.Range(0, 256), Random.Range(0, 256));
             spawnAnim.SetBool("enemy", false);
             if (stopSpawn)
             {
@@ -52,11 +56,13 @@ public class PortalSpawn : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(10f);
-            if (counter > 5)
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(RestartDelay);
+            if (counter > amountGhosts-1)
             {
                 counter = 0;
             }
+            gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
         }
     }
 }
