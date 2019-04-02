@@ -184,6 +184,7 @@ namespace Assets.Scripts
 
                 if(Lives == 0)
                 {
+                    
                     // Destroy game object in 2.1 seconds
                     Destroy(gameObject, 2.1f);
                 }
@@ -193,10 +194,17 @@ namespace Assets.Scripts
 
         IEnumerator Hurt()
         {
-            myAnim.SetBool("hit", true);
-            Debug.Log("Hit");
-            yield return new WaitForSeconds(1.5f);
-            myAnim.SetBool("hit", false);
+            if (Lives != 1)
+            {
+                myAnim.SetBool("hit", true);
+                Debug.Log("Hit");
+                yield return new WaitForSeconds(1f);
+                myAnim.SetBool("hit", false);
+            }
+            else
+            {
+                myAnim.SetBool("hit", false);
+            }
         }
 
         public int points;
