@@ -24,6 +24,7 @@ public class PortalSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
         InvokeRepeating("GhostSpawn", spawnRate, nextSpawn);
         spawnAnim = GetComponent<Animator>();
