@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PortalSpawn : MonoBehaviour
 {
+
+
     private GameObject player;
 
     public GameObject enemy;
@@ -15,6 +17,11 @@ public class PortalSpawn : MonoBehaviour
     public int amountGhosts;
     private int counter = 0;
     public float nextSpawn;
+
+    // Dynamic dif, controlled by reloadSceneManager
+    public static float DifficultyModifier = 1;
+    private float actualNextSpawn => nextSpawn * DifficultyModifier;
+
     private Animator spawnAnim;
 
     public float StartX;
@@ -26,7 +33,7 @@ public class PortalSpawn : MonoBehaviour
     {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("GhostSpawn", spawnRate, nextSpawn);
+        InvokeRepeating("GhostSpawn", spawnRate, actualNextSpawn);
         spawnAnim = GetComponent<Animator>();
         gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
     }
@@ -59,7 +66,7 @@ public class PortalSpawn : MonoBehaviour
                 CancelInvoke("GhostSpawn");
             }
 
-            Debug.Log(counter);
+            Debug.Log($"Difficulty {DifficultyModifier}, nextspawn {actualNextSpawn}");
         }
         else
         {
