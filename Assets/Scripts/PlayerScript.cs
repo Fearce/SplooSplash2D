@@ -122,6 +122,7 @@ namespace Assets.Scripts
                 // Up
                 if ((StickY > 0.5 || (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))) && isJumping == false )
                 {
+                    lastJump = DateTime.UtcNow;
                     PlayerBody.AddForce(transform.up * JumpForce * 100);
                     isJumping = true;
                     //Player.position = new Vector3(Player.position.x - MoveSpeed, Player.position.y);

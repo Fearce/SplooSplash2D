@@ -40,7 +40,7 @@ namespace Assets.Scripts
             while (true)
             {
                 seeker.StartPath(transform.position, Target.position, OnPathComplete);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(1.5f);
             }
         }
 
