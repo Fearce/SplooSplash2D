@@ -52,6 +52,8 @@ namespace Assets.Scripts
             myAnim = GetComponent<Animator>();
             HurtPanel = GameObject.FindGameObjectWithTag("HurtPanel");
             HurtPanel.SetActive(false);
+            SetWeapon("Begin!", GunTypes.Pistol1, sprites[18], 8);  //pistol4
+
         }
 
         /// <summary>
@@ -155,11 +157,11 @@ namespace Assets.Scripts
                 if (coll.gameObject.name == "TrapRoof")
                 {
                     Debug.Log("pew");
-                    PlayerBody.AddForce(-transform.up*1000);
+                    PlayerBody.AddForce(-transform.up*500);
                 }
                 else if (coll.gameObject.name == "TrapFloor")
                 {
-                    PlayerBody.AddForce(transform.up * 1000);
+                    PlayerBody.AddForce(transform.up * 500);
                 }
                 isJumping = false;
                 if (Lives > 0)
@@ -296,6 +298,17 @@ namespace Assets.Scripts
             Joystick.MaxAmmo = maxAmmo;
             Joystick.AmmoCount = maxAmmo;
             Destroy(sprite.gameObject);
+        }
+
+        void SetWeapon(string statusText, GunTypes gunType, Sprite sprite, int maxAmmo)
+        {
+            GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = statusText;
+            GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+            weaponUnlocked = Time.time;
+            CurrentWeapon = gunType;
+            Weapon.GetComponent<SpriteRenderer>().sprite = sprite;
+            Joystick.MaxAmmo = maxAmmo;
+            Joystick.AmmoCount = maxAmmo;
         }
     }
 }
