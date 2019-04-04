@@ -22,6 +22,7 @@ TagManager:
   - HurtPanel
   - PortalSpawn
   - StatusText
+  - GunPickup
   layers:
   - Default
   - TransparentFX

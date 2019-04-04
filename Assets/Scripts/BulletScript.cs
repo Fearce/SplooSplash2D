@@ -32,79 +32,49 @@ namespace Assets.Scripts
                     Damage = 50;
                     BulletForce = 10;
                     Joystick.FireRate = 0.8f;
-                    ReloadSpeed = 3;
+                    ReloadSpeed = 2;
                     break;
-                case GunTypes.Pistol2:
-                    Damage = 55;
-                    BulletForce = 12;
-                    Joystick.FireRate = 0.55f;
-                    ReloadSpeed = 2.5f;
-                    break;
-                case GunTypes.Pistol3:
+                case GunTypes.Tec9:
                     Damage = 30;
                     BulletForce = 8;
-                    Joystick.FireRate = 0.2f;
+                    Joystick.FireRate = 0.25f;
                     ReloadSpeed = 1.5f;
                     break;
-                case GunTypes.Pistol4:
-                    break;
-                case GunTypes.Pistol5:
-                    break;
-                case GunTypes.Pistol6:
-                    break;
-                case GunTypes.Pistol7:
-                    break;
                 case GunTypes.AK47:
+                    Damage = 50;
+                    BulletForce = 13;
+                    Joystick.FireRate = 0.25f;
+                    ReloadSpeed = 2f;
                     break;
-                case GunTypes.Gattlegun1:
+                case GunTypes.SMG:
+                    Damage = 20;
+                    BulletForce = 8;
+                    Joystick.FireRate = 0.15f;
+                    ReloadSpeed = 2.5f;
                     break;
-                case GunTypes.Gattlegun2:
+                case GunTypes.AutoSniper:
+                    Damage = 100;
+                    BulletForce = 15;
+                    Joystick.FireRate = 0.5f;
+                    ReloadSpeed = 3f;
                     break;
-                case GunTypes.Machinegun1:
+                case GunTypes.SCAR20:
+                    Damage = 50;
+                    BulletForce = 11;
+                    Joystick.FireRate = 0.22f;
+                    ReloadSpeed = 2f;
                     break;
-                case GunTypes.Machinegun2:
+                case GunTypes.M1918:
+                    Damage = 90;
+                    BulletForce = 12;
+                    Joystick.FireRate = 0.3f;
+                    ReloadSpeed = 4f;
                     break;
-                case GunTypes.Machinegun3:
-                    break;
-                case GunTypes.Machinegun4:
-                    break;
-                case GunTypes.Machinegun5:
-                    break;
-                case GunTypes.Machinegun6:
-                    break;
-                case GunTypes.Machinegun7:
-                    break;
-                case GunTypes.Machinegun8:
-                    break;
-                case GunTypes.Machinegun9:
-                    break;
-                case GunTypes.Machinegun10:
-                    break;
-                case GunTypes.Machinegun11:
-                    break;
-                case GunTypes.Machinegun12:
-                    break;
-                case GunTypes.Machinegun13:
-                    break;
-                case GunTypes.Revolver1:
-                    break;
-                case GunTypes.Revolver2:
-                    break;
-                case GunTypes.Rifle1:
-                    break;
-                case GunTypes.Rifle2:
-                    break;
-                case GunTypes.RPG1:
-                    break;
-                case GunTypes.RPG2:
-                    break;
-                case GunTypes.Scout1:
-                    break;
-                case GunTypes.Sniper1:
-                    break;
-                case GunTypes.Sniper2:
-                    break;
-                case GunTypes.Sniper3:
+                case GunTypes.Minigun:
+                    Damage = 30;
+                    BulletForce = 8;
+                    Joystick.FireRate = 0.08f;
+                    ReloadSpeed = 4f;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

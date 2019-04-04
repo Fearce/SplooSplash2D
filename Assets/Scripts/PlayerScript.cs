@@ -83,10 +83,6 @@ namespace Assets.Scripts
             }
 
             pointText.text = "POINTS: " + points;
-            if (points % 50 == 0)
-            {
-                SetWeapon();
-            }
             FixJumpingBug();
             HpText.text = "HP: " + Lives;
 
@@ -140,31 +136,6 @@ namespace Assets.Scripts
 
         private float weaponUnlocked;
         private Sprite[] sprites;
-
-        private void SetWeapon()
-        {
-            if (points >= 100 && Weapon.GetComponent<SpriteRenderer>().sprite != sprites[18])
-            {
-                GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Tec9 unlocked!";
-                GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
-                weaponUnlocked = Time.time;
-                CurrentWeapon = GunTypes.Pistol3;
-                Weapon.GetComponent<SpriteRenderer>().sprite = sprites[18];
-                Joystick.MaxAmmo = 20;
-                Joystick.AmmoCount = Joystick.MaxAmmo;
-
-            }
-            else if (points < 100 && points >= 50 && Weapon.GetComponent<SpriteRenderer>().sprite != sprites[17])
-            {
-                GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Deagle unlocked!";
-                GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
-                weaponUnlocked = Time.time;
-                CurrentWeapon = GunTypes.Pistol2;
-                Weapon.GetComponent<SpriteRenderer>().sprite = sprites[17];
-                Joystick.MaxAmmo = 12;
-                Joystick.AmmoCount = Joystick.MaxAmmo;
-            }
-        }
 
 
         // Collision
@@ -272,9 +243,48 @@ namespace Assets.Scripts
                 Debug.Log(Lives);
                 HpText.text = "HP: " + Lives;
             }
+
+            // Hitting weapons
+            if (other.gameObject.tag == "GunPickup")
+            {
+                switch (other.gameObject.name)
+                {
+                    case "Tec9":
+                        SetWeapon("Tec9 unlocked!",GunTypes.Tec9, other ,12);  //pistol4
+                        break;
+                    case "SMG":
+                        SetWeapon("SMG unlocked!", GunTypes.SMG, other, 40);  //pistol4
+                        break;
+                    case "AK47":
+                        SetWeapon("AK47 unlocked!", GunTypes.AK47, other, 30);  //pistol4
+                        break;
+                    case "AutoSniper":
+                        SetWeapon("AutoSniper unlocked!", GunTypes.AutoSniper, other, 10);  //pistol4
+                        break;
+                    case "SCAR20":
+                        SetWeapon("SCAR-20 unlocked!", GunTypes.SCAR20, other, 30);  //pistol4
+                        break;
+                    case "M1918":
+                        SetWeapon("M1918 unlocked!", GunTypes.M1918, other, 55);  //pistol4
+                        break;
+                    case "Minigun":
+                        SetWeapon("Minigun unlocked!", GunTypes.Minigun, other, 100);  //pistol4
+                        break;
+
+                }
+            }
         }
 
-        
-
+        void SetWeapon(string statusText, GunTypes gunType, Collider2D sprite, int maxAmmo)
+        {
+            GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = statusText;
+            GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+            weaponUnlocked = Time.time;
+            CurrentWeapon = gunType;
+            Weapon.GetComponent<SpriteRenderer>().sprite = sprite.gameObject.GetComponent<SpriteRenderer>().sprite;
+            Joystick.MaxAmmo = maxAmmo;
+            Joystick.AmmoCount = maxAmmo;
+            Destroy(sprite.gameObject);
+        }
     }
 }
