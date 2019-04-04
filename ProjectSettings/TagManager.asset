@@ -23,6 +23,7 @@ TagManager:
   - PortalSpawn
   - StatusText
   - GunPickup
+  - DeadText
   layers:
   - Default
   - TransparentFX

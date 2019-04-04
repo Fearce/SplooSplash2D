@@ -12,5 +12,10 @@ public class reloadSceneManager : MonoBehaviour
             SceneManager.LoadScene(0);
             PortalSpawn.DifficultyModifier = PortalSpawn.DifficultyModifier * 1.1f;
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+            PortalSpawn.DifficultyModifier = 1f;
+        }
     }
 }
