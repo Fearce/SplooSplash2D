@@ -234,6 +234,13 @@ namespace Assets.Scripts
                 Destroy(other.gameObject);
                 points++;
                 pointText.text = "POINTS: " + points;
+                if (points % 50 == 0)
+                {
+                    Lives++;
+                    GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Life gained!";
+                    GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+                    weaponUnlocked = Time.time;
+                }
             }
             // Hitting cherries
             if (other.gameObject.tag == "Cherry")
@@ -242,6 +249,9 @@ namespace Assets.Scripts
                 Lives++;
                 Debug.Log(Lives);
                 HpText.text = "HP: " + Lives;
+                GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Life gained!";
+                GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+                weaponUnlocked = Time.time;
             }
 
             // Hitting weapons
