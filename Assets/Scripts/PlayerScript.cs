@@ -243,7 +243,8 @@ namespace Assets.Scripts
             // Hitting points
             if (other.gameObject.tag == "Points")
             {
-                Instantiate(pointsSFX, transform.position, Quaternion.identity);
+                GameObject sound = Instantiate(pointsSFX, transform.position, Quaternion.identity);
+                Destroy(sound, 3);
                 Destroy(other.gameObject);
                 points++;
                 pointText.text = "POINTS: " + points;
