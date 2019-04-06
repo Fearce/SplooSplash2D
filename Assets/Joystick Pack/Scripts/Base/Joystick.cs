@@ -73,6 +73,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public GameObject BulletToRight, BulletToLeft;
     private GameObject bullet;
 
+    // Sound Effect Objects
+    public GameObject bulletSFX;
+
     public void OnDrag(PointerEventData eventData)
     {
         cam = null;
@@ -101,7 +104,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                     BulletToRight = GameObject.FindGameObjectWithTag("BulletToRight");
                     BulletToLeft = GameObject.FindGameObjectWithTag("BulletToLeft");
                 }
-
+                
                 isFiring = true;
                 if (bullet != null) nextFire = Time.time + FireRate;
             }
@@ -140,6 +143,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 Debug.Log("Firing");
                 bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
                 bullet = Instantiate(BulletToRight, bulletPos, Quaternion.identity);
+                bulletSFX = GameObject.FindGameObjectWithTag("Gunshot");
+                Instantiate(bulletSFX, transform.position, Quaternion.identity);
                 AmmoCount--;
                 GameObject.FindGameObjectWithTag("AmmoText").GetComponent<Text>().text = $"Ammo: {AmmoCount}/{MaxAmmo}";
                 int bulletForce = bullet.gameObject.GetComponent<BulletScript>().BulletForce;
