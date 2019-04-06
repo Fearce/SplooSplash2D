@@ -26,4 +26,9 @@ public class MainMenu : MonoBehaviour
     {
         aboutPanel.SetActive(false);
     }
+
+    public void backToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
