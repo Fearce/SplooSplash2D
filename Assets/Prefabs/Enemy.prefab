@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300316, guid: 5e0ce7147089ef148beb26f6ff2833a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca411cd25ea68034eabc9654d5ae6dc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   GhostBody: {fileID: 0}
   JumpForce: 8
   Health: 100
+  enemyDeath: {fileID: 0}
   BloodSplash: {fileID: 5811877807928797068, guid: 5910f0db2400ecd4a9a2a3956cb313b2,
     type: 3}
 --- !u!114 &3167183231201737809

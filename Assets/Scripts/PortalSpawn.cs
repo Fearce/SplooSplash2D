@@ -58,8 +58,11 @@ public class PortalSpawn : MonoBehaviour
             whereEnemySpawn = new Vector2(gameObject.transform.position.x, transform.position.y);
             yield return new WaitForSeconds(1f);
             GameObject ghost = Instantiate(enemy, whereEnemySpawn, Quaternion.identity);
-            ghost.GetComponent<SpriteRenderer>().color =
-                new Color(Random.Range(0, 256), Random.Range(0, 256), Random.Range(0, 256));
+            Color[] colorValues = new Color[]
+            {
+                Color.blue, Color.cyan, Color.green, Color.magenta, Color.red, Color.yellow, Color.white
+            };
+            ghost.GetComponent<SpriteRenderer>().color = colorValues[Random.Range(0, colorValues.Length - 1)];
             spawnAnim.SetBool("enemy", false);
             if (stopSpawn)
             {
