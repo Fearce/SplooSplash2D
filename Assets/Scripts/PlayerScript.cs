@@ -44,6 +44,7 @@ namespace Assets.Scripts
         public GameObject healthSFX;
         public GameObject newWeaponSFX;
         public GameObject playerDeathSFX;
+        public GameObject hurtSFX;
 
         // Start is called before the first frame update
         void Start()
@@ -181,6 +182,7 @@ namespace Assets.Scripts
                     HurtPanelActive();
                     //Set the parameter hit to true, after 1.5 sec to false
                     Hurt();
+                    Instantiate(hurtSFX, transform.position, Quaternion.identity);
                     Lives--;
                     
                 }
