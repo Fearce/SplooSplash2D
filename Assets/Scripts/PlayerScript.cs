@@ -42,6 +42,7 @@ namespace Assets.Scripts
         // Sound Effect Objects
         public GameObject pointsSFX;
         public GameObject healthSFX;
+        public GameObject newWeaponSFX;
 
         // Start is called before the first frame update
         void Start()
@@ -267,6 +268,8 @@ namespace Assets.Scripts
             // Hitting weapons
             if (other.gameObject.tag == "GunPickup")
             {
+                Instantiate(newWeaponSFX, transform.position, Quaternion.identity);
+
                 switch (other.gameObject.name)
                 {
                     case "Tec9":
