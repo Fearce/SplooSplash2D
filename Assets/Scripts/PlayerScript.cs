@@ -41,6 +41,7 @@ namespace Assets.Scripts
 
         // Sound Effect Objects
         public GameObject pointsSFX;
+        public GameObject healthSFX;
 
         // Start is called before the first frame update
         void Start()
@@ -253,6 +254,7 @@ namespace Assets.Scripts
             // Hitting cherries
             if (other.gameObject.tag == "Cherry")
             {
+                Instantiate(healthSFX, transform.position, Quaternion.identity);
                 Destroy(other.gameObject);
                 Lives++;
                 Debug.Log(Lives);
