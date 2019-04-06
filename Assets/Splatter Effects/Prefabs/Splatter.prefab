@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7efb895ff64a79443a104716971519da, type: 3}
-  m_Color: {r: 0.27742815, g: 0.2794118, b: 0.25886682, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 234400bd3a4aa954cbb2c2a0225d2b79, type: 3}
   - {fileID: 21300000, guid: 9dad6916cb6dcab49a0404ebbcdd7595, type: 3}
   - {fileID: 21300000, guid: d5adc05d4113d7448a75637bb998396c, type: 3}
-  randomColor: 1
+  randomColor: 0
   splatColor:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4278190335

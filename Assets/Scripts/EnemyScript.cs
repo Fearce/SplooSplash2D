@@ -58,7 +58,11 @@ namespace Assets.Scripts
                 Debug.Log("ded ghost");
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y, -3.29f);
                 Instantiate(BloodSplash, pos, Quaternion.identity);
+                Splatter.randomColor = false;
+                Splatter.gameObject.GetComponent<SpriteRenderer>().color =
+                    gameObject.GetComponent<SpriteRenderer>().color; 
                 Splatter splatterObj = (Splatter)Instantiate(Splatter, pos, Quaternion.identity);
+                
                 Destroy(gameObject);
             }
 
