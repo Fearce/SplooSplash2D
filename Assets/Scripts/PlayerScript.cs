@@ -38,6 +38,10 @@ namespace Assets.Scripts
         public Transform Player { get; set; }
 
         public Rigidbody2D PlayerBody;
+
+        // Sound Effect Objects
+        public GameObject pointsSFX;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -234,6 +238,7 @@ namespace Assets.Scripts
             // Hitting points
             if (other.gameObject.tag == "Points")
             {
+                Instantiate(pointsSFX, transform.position, Quaternion.identity);
                 Destroy(other.gameObject);
                 points++;
                 pointText.text = "POINTS: " + points;
