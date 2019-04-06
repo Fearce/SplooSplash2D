@@ -61,6 +61,7 @@ namespace Assets.Scripts
             HurtPanel = GameObject.FindGameObjectWithTag("HurtPanel");
             HurtPanel.SetActive(false);
             SetWeapon("Begin!", GunTypes.Pistol1, sprites[18], 8);  //pistol4
+            GameObject.FindGameObjectWithTag("CrosshairLeft").SetActive(false);
 
         }
 
@@ -83,6 +84,10 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            // Position weapon
+            var pos = gameObject.transform.position;
+            GameObject.FindGameObjectWithTag("Weapon").transform.position = new Vector3(pos.x,(float) (pos.y-0.221));
+
             // Reset statustext
             if (weaponUnlocked + 2 < Time.time &&
                 GameObject.FindGameObjectWithTag("StatusText").transform.localScale == Vector3.one &&

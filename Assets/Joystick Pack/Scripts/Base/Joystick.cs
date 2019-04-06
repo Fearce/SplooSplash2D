@@ -60,6 +60,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
         StartCoroutine("Firing");
+        crosshairLeft = GameObject.FindGameObjectWithTag("CrosshairLeft");
+        crosshairRight = GameObject.FindGameObjectWithTag("CrosshairRight");
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
@@ -75,6 +77,9 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     // Sound Effect Objects
     public GameObject bulletSFX;
+
+    // Crosshairs
+    private GameObject crosshairLeft, crosshairRight;
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -115,15 +120,35 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
                 float angle = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg;
                 GameObject weapon = GameObject.FindGameObjectWithTag("Weapon");
                 int rotationAdjust = 85;
-                if (PlayerScript.FacingRight)
-                {
+                //if (PlayerScript.FacingRight)
+                //{
+
                     angle = -angle + rotationAdjust;
-                }
-                else
-                {
-                    angle = -angle - rotationAdjust;
-                }
+                //}
+                //else
+                //{
+                //    angle = -angle - rotationAdjust;
+                //}
+
+
                 weapon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+                //if (input.x < 0) weapon.transform.Rotate(0,180,0);
+                //if (input.x >= 0) weapon.transform.Rotate(0, 0, 0);
+                if (input.x < 0)
+                {
+                    weapon.transform.rotation = Quaternion.Euler(new Vector3(180, 0, -angle));
+                    crosshairRight.SetActive(false);
+                    crosshairLeft.SetActive(true);
+                }
+
+                if (input.x >= 0)
+                {
+                    weapon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+                    crosshairRight.SetActive(true);
+                    crosshairLeft.SetActive(false);
+                }
+                // if (input.x >= 0) weapon.transform.rotation = new Quaternion(weapon.transform.rotation.x, 0, weapon.transform.rotation.z, weapon.transform.rotation.w);
             }
         }
     }

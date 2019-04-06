@@ -25,6 +25,8 @@ TagManager:
   - GunPickup
   - DeadText
   - Gunshot
+  - CrosshairRight
+  - CrosshairLeft
   layers:
   - Default
   - TransparentFX
