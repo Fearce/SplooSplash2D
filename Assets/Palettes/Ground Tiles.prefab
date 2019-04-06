@@ -240,7 +240,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 1e22d7d670de2c447b13fcbaa52245b5, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 72a22ecb909a88147a11845768c5b9b2, type: 2}
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 43eb502199666c64293a0bb421be6f31, type: 3}
