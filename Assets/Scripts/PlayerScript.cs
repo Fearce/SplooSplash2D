@@ -43,6 +43,7 @@ namespace Assets.Scripts
         public GameObject pointsSFX;
         public GameObject healthSFX;
         public GameObject newWeaponSFX;
+        public GameObject playerDeathSFX;
 
         // Start is called before the first frame update
         void Start()
@@ -188,7 +189,7 @@ namespace Assets.Scripts
 
                 if(Lives == 0)
                 {
-                    
+                    Instantiate(playerDeathSFX, transform.position, Quaternion.identity);
                     // Destroy game object in 2.1 seconds
                     Destroy(gameObject, 2.1f);
                 }
