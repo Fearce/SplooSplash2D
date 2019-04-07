@@ -46,9 +46,15 @@ namespace Assets.Scripts
         public GameObject playerDeathSFX;
         public GameObject hurtSFX;
 
+        // High Score
+        public Text highScore;
+
         // Start is called before the first frame update
         void Start()
         {
+            // HighScore
+            highScore.text = "HS: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+
             sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
             pointText = GameObject.FindGameObjectWithTag("PointsText").GetComponent<Text>();
             Weapon = GameObject.FindGameObjectWithTag("Weapon");
@@ -259,6 +265,13 @@ namespace Assets.Scripts
                     GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Life gained!";
                     GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
                     weaponUnlocked = Time.time;
+                }
+
+                // High Score
+                if (points > PlayerPrefs.GetInt("HighScore", 0))
+                {
+                    PlayerPrefs.SetInt("HighScore", points);
+                    highScore.text = "HS: " + points.ToString();
                 }
             }
             // Hitting cherries

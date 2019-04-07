@@ -27,6 +27,7 @@ TagManager:
   - Gunshot
   - CrosshairRight
   - CrosshairLeft
+  - ScreenShake
   layers:
   - Default
   - TransparentFX
