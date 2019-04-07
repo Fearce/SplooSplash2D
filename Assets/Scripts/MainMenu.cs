@@ -26,4 +26,10 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void DynamicDifficultyReset()
+    {
+        SceneManager.LoadScene(1);
+        PortalSpawn.DifficultyModifier = PortalSpawn.DifficultyModifier * 1.1f;
+    }
 }
