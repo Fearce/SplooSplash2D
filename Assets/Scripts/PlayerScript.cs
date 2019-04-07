@@ -112,6 +112,7 @@ namespace Assets.Scripts
             {
                 isDead = true;
                 DeadPanel.SetActive(true);
+                GameObject.FindGameObjectWithTag("FinalScoreText").GetComponent<Text>().text = "SCORE: " + points;
             }
 
             // If not ded

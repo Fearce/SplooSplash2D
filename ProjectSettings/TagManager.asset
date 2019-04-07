@@ -28,6 +28,7 @@ TagManager:
   - CrosshairRight
   - CrosshairLeft
   - ScreenShake
+  - FinalScoreText
   layers:
   - Default
   - TransparentFX
