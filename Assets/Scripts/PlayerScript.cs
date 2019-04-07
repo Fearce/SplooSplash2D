@@ -202,6 +202,7 @@ namespace Assets.Scripts
 
                 if(Lives == 0)
                 {
+                    Handheld.Vibrate();
                     Instantiate(playerDeathSFX, transform.position, Quaternion.identity);
                     // Destroy game object in 2.1 seconds
                     Destroy(gameObject, 2.1f);
@@ -272,6 +273,8 @@ namespace Assets.Scripts
                 {
                     PlayerPrefs.SetInt("HighScore", points);
                     highScore.text = "HS: " + points.ToString();
+                    GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "NEW HIGHSCORE!";
+                    GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
                 }
             }
             // Hitting cherries
