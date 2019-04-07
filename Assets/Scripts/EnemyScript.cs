@@ -56,6 +56,8 @@ namespace Assets.Scripts
             // If health <= 0 ghost is dead
             if (Health <= 0)
             {
+                Handheld.Vibrate();
+
                 Instantiate(enemyDeath, transform.position, Quaternion.identity);
                 Debug.Log("ded ghost");
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y, -3.29f);
