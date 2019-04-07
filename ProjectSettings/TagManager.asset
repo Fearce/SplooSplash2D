@@ -29,6 +29,7 @@ TagManager:
   - CrosshairLeft
   - ScreenShake
   - FinalScoreText
+  - HighScoreTextMenu
   layers:
   - Default
   - TransparentFX

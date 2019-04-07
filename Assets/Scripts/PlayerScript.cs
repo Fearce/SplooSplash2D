@@ -276,6 +276,9 @@ namespace Assets.Scripts
                     highScore.text = "HS: " + points.ToString();
                     GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "NEW HIGHSCORE!";
                     GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+
+                    // High Score Menu
+                    GameObject.FindGameObjectWithTag("HighScoreTextMenu").GetComponent<Text>().text = points.ToString();
                 }
             }
             // Hitting cherries
