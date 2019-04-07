@@ -19,12 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void AboutTheGame()
     {
-        aboutPanel.SetActive(true);
-    }
-
-    public void cancelAboutTheGame()
-    {
-        aboutPanel.SetActive(false);
+        SceneManager.LoadScene(2);
     }
 
     public void backToMainMenu()
