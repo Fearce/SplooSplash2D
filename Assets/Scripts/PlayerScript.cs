@@ -53,7 +53,9 @@ namespace Assets.Scripts
         void Start()
         {
             // HighScore
+            highScore = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<Text>();
             highScore.text = "HS: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+            DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
 
             sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
             pointText = GameObject.FindGameObjectWithTag("PointsText").GetComponent<Text>();
