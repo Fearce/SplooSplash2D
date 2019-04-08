@@ -55,13 +55,13 @@ namespace Assets.Scripts
             // HighScore
             highScore = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<Text>();
             highScore.text = "HS: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
-            DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
+           // DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
 
             sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
             pointText = GameObject.FindGameObjectWithTag("PointsText").GetComponent<Text>();
             Weapon = GameObject.FindGameObjectWithTag("Weapon");
-            //DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
-            //DeadPanel.SetActive(false);
+            DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
+            DeadPanel.SetActive(false);
             Player = GetComponent<Transform>();
             HpText = GameObject.FindGameObjectWithTag("HPText").GetComponent<Text>();
             PlayerBody = gameObject.GetComponent<Rigidbody2D>();
