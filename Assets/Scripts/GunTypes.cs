@@ -15,7 +15,21 @@ namespace Assets.Scripts
         AutoSniper,
         SCAR20,
         M1918,
-        Minigun
+        Minigun,
+        PistolSMG,
+        SMGGrey6,
+        MachinegunOldSchool,
+        RifleGrey,
+        MachineGrey2,
+        SniperBrown,
+        RevolverGrey,
+        MP7,
+        Galil,
+        Scout,
+        SemiColt,
+        SniperGrey,
+        GattlingGun,
+        PistolGod
 
     }
 }

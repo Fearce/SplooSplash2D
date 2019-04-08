@@ -30,6 +30,8 @@ TagManager:
   - ScreenShake
   - FinalScoreText
   - HighScoreTextMenu
+  - HighScoreText
+  - Boss
   layers:
   - Default
   - TransparentFX
