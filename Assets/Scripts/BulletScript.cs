@@ -154,6 +154,12 @@ namespace Assets.Scripts
                     Joystick.FireRate = 0.5f;
                     ReloadSpeed = 3f;
                     break;
+                case GunTypes.PistolGod:
+                    Damage = 100;
+                    BulletForce = 40;
+                    Joystick.FireRate = 0.02f;
+                    ReloadSpeed = 0.5f;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

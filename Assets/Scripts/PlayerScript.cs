@@ -305,25 +305,67 @@ namespace Assets.Scripts
                 switch (other.gameObject.name)
                 {
                     case "Tec9":
-                        SetWeapon("Tec9 unlocked!",GunTypes.Tec9, other ,12);  //pistol4
+                        SetWeapon("Tec9 unlocked!",GunTypes.Tec9, other ,12);  //Tec9
                         break;
                     case "SMG":
-                        SetWeapon("SMG unlocked!", GunTypes.SMG, other, 40);  //pistol4
+                        SetWeapon("SMG unlocked!", GunTypes.SMG, other, 40);  //SMG
                         break;
                     case "AK47":
-                        SetWeapon("AK47 unlocked!", GunTypes.AK47, other, 30);  //pistol4
+                        SetWeapon("AK47 unlocked!", GunTypes.AK47, other, 30);  //AK47
                         break;
                     case "AutoSniper":
-                        SetWeapon("AutoSniper unlocked!", GunTypes.AutoSniper, other, 10);  //pistol4
+                        SetWeapon("AutoSniper unlocked!", GunTypes.AutoSniper, other, 10);  //AutoSniper
                         break;
                     case "SCAR20":
-                        SetWeapon("SCAR-20 unlocked!", GunTypes.SCAR20, other, 30);  //pistol4
+                        SetWeapon("SCAR-20 unlocked!", GunTypes.SCAR20, other, 30);  //SCAR-20
                         break;
                     case "M1918":
-                        SetWeapon("M1918 unlocked!", GunTypes.M1918, other, 55);  //pistol4
+                        SetWeapon("M1918 unlocked!", GunTypes.M1918, other, 55);  //M1918
                         break;
                     case "Minigun":
-                        SetWeapon("Minigun unlocked!", GunTypes.Minigun, other, 100);  //pistol4
+                        SetWeapon("Minigun unlocked!", GunTypes.Minigun, other, 100);  //Minigun
+                        break;
+                    case "RevolverGrey":
+                        SetWeapon("Revolver unlocked!", GunTypes.RevolverGrey, other, 6);  //Revolver
+                        break;
+                    case "MP7":
+                        SetWeapon("MP7 unlocked!", GunTypes.MP7, other, 40);  //MP7
+                        break;
+                    case "Galil":
+                        SetWeapon("Galil unlocked!", GunTypes.Galil, other, 25);  //Galil
+                        break;
+                    case "Scout":
+                        SetWeapon("Scout unlocked!", GunTypes.Scout, other, 10);  //Scout
+                        break;
+                    case "SemiColt":
+                        SetWeapon("Colt unlocked!", GunTypes.SemiColt, other, 30);  //SemiColt
+                        break;
+                    case "SniperGrey":
+                        SetWeapon("Sniper unlocked!", GunTypes.SniperGrey, other, 10);  //SniperGrey
+                        break;
+                    case "GattlingGun":
+                        SetWeapon("Gattlinggun unlocked!", GunTypes.GattlingGun, other, 100);  //GattlingGun
+                        break;
+                    case "PistolSMG":
+                        SetWeapon("Pistol unlocked!", GunTypes.PistolSMG, other, 30);  //PistolSMG
+                        break;
+                    case "SMGGrey6":
+                        SetWeapon("SMG unlocked!", GunTypes.SMGGrey6, other, 35);  //SMGGrey6
+                        break;
+                    case "MachinegunOldSchool":
+                        SetWeapon("Machinegun unlocked!", GunTypes.MachinegunOldSchool, other, 35);  //MachinegunOldSchool
+                        break;
+                    case "RifleGrey":
+                        SetWeapon("Rifle unlocked!", GunTypes.RifleGrey, other, 20);  //RifleGrey
+                        break;
+                    case "MachineGrey2":
+                        SetWeapon("Machinegun unlocked!", GunTypes.MachineGrey2, other, 40);  //MachineGrey2
+                        break;
+                    case "SniperBrown":
+                        SetWeapon("Sniper unlocked!", GunTypes.SniperBrown, other, 10);  //SniperBrown
+                        break;
+                    case "PistolGod":
+                        SetWeapon("Pistol unlocked!", GunTypes.PistolGod, other, 200);  //PistolGod
                         break;
 
                 }
