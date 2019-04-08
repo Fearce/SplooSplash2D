@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -32,8 +33,9 @@ public class MainMenu : MonoBehaviour
 
     public void DynamicDifficultyReset()
     {
-        SceneManager.LoadScene(1);
         PortalSpawn.DifficultyModifier = PortalSpawn.DifficultyModifier * 1.1f;
+        SceneManager.LoadScene("PersistentScene");
+        SceneManager.LoadScene("LevelOne", LoadSceneMode.Additive);
     }
 
     public void HighScoreMenu()

@@ -31,8 +31,6 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
-
-
             seeker = GetComponent<Seeker>();
             GhostBody = gameObject.GetComponent<Rigidbody2D>();
             Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();

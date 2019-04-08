@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
+using Debug = UnityEngine.Debug;
 
 namespace Assets.Scripts
 {
@@ -52,9 +54,16 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            // Start timer
+            if (EndScreen.Stopwatch == null)
+            {
+                EndScreen.Stopwatch = new Stopwatch();
+                EndScreen.Stopwatch.Start();
+            }
+
             // HighScore
             highScore = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<Text>();
-            highScore.text = "HS: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
+            highScore.text = "Highscore: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
             // DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
 
             sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
@@ -275,7 +284,7 @@ namespace Assets.Scripts
                 if (points > PlayerPrefs.GetInt("HighScore", 0))
                 {
                     PlayerPrefs.SetInt("HighScore", points);
-                    highScore.text = "HS: " + points.ToString();
+                    highScore.text = "Highscore: " + points.ToString();
                     GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "NEW HIGHSCORE!";
                     GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
 

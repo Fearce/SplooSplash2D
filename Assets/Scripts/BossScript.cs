@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BossScript : MonoBehaviour
 {
@@ -50,8 +52,18 @@ public class BossScript : MonoBehaviour
                 Color.red;
             this.Splatter.gameObject.transform.localScale = gameObject.transform.localScale/6;
             Splatter splatterObj = (Splatter)Instantiate(Splatter, pos, Quaternion.identity);
-
             Destroy(gameObject);
+            if (gameObject.name != "Boss3")
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points += 50;
+                GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Boss dead! New level!";
+                GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points += 1000;
+                SceneManager.LoadScene("EndScene");
+            }
         }
 
         if (moveCounter < 100)

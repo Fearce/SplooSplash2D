@@ -62,7 +62,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         StartCoroutine("Firing");
         crosshairLeft = GameObject.FindGameObjectWithTag("CrosshairLeft");
         crosshairRight = GameObject.FindGameObjectWithTag("CrosshairRight");
-        crosshairLeft.SetActive(false);
+        if (crosshairLeft != null) crosshairLeft.SetActive(false);
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
