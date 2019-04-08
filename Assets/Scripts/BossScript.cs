@@ -83,17 +83,17 @@ public class BossScript : MonoBehaviour
             }
         }
 
-        if (moveCounter < 100)
+        if (Fighting && moveCounter < 100)
         {
             moveCounter++;
             transform.position = new Vector3(transform.position.x + MovementSpeed, transform.position.y);
         }
-        else if (moveCounter < 250)
+        else if (Fighting && moveCounter < 250)
         {
             moveCounter++;
             transform.position = new Vector3(transform.position.x - MovementSpeed, transform.position.y);
         }
-        else
+        else if (Fighting)
         {
             moveCounter = 0;
         }
