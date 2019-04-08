@@ -9,7 +9,10 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        Debug.Log("loading scenes");
+        SceneManager.LoadScene("PersistentScene");
+        SceneManager.LoadScene("LevelOne", LoadSceneMode.Additive);
+
     }
 
     public void ExitGame()
