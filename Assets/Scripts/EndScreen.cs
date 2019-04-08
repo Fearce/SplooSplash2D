@@ -8,6 +8,7 @@ public class EndScreen : MonoBehaviour
 {
     public static Stopwatch Stopwatch;
     public static int score;
+    public static int currentLevel;
 
     // Start is called before the first frame update
     void Start()

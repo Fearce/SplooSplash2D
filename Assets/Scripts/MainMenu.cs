@@ -12,8 +12,18 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("loading scenes");
         SceneManager.LoadScene("PersistentScene");
-        SceneManager.LoadScene("LevelOne", LoadSceneMode.Additive);
-
+        if (EndScreen.currentLevel == 2)
+        {
+            SceneManager.LoadScene("LevelTwo", LoadSceneMode.Additive);
+        }
+        else if (EndScreen.currentLevel == 3)
+        {
+            SceneManager.LoadScene("BossLevel", LoadSceneMode.Additive);
+        }
+        else
+        {
+            SceneManager.LoadScene("LevelOne", LoadSceneMode.Additive);
+        }
     }
 
     public void ExitGame()
@@ -35,7 +45,18 @@ public class MainMenu : MonoBehaviour
     {
         PortalSpawn.DifficultyModifier = PortalSpawn.DifficultyModifier * 1.1f;
         SceneManager.LoadScene("PersistentScene");
-        SceneManager.LoadScene("LevelOne", LoadSceneMode.Additive);
+        if (EndScreen.currentLevel == 2)
+        {
+            SceneManager.LoadScene("LevelTwo", LoadSceneMode.Additive);
+        }
+        else if (EndScreen.currentLevel == 3)
+        {
+            SceneManager.LoadScene("BossLevel", LoadSceneMode.Additive);
+        }
+        else
+        {
+            SceneManager.LoadScene("LevelOne", LoadSceneMode.Additive);
+        }
     }
 
     public void HighScoreMenu()

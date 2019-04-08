@@ -62,6 +62,7 @@ public class BossScript : MonoBehaviour
                 if (gameObject.name == "Boss1")
                 {
                     EndScreen.score = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points;
+                    EndScreen.currentLevel = 2;
                     SceneManager.LoadScene("PersistentScene");
                     SceneManager.LoadScene("LevelTwo", LoadSceneMode.Additive);
 
@@ -69,6 +70,7 @@ public class BossScript : MonoBehaviour
                 else if (gameObject.name == "Boss2")
                 {
                     EndScreen.score = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points;
+                    EndScreen.currentLevel = 3;
                     SceneManager.LoadScene("PersistentScene");
                     SceneManager.LoadScene("BossLevel", LoadSceneMode.Additive);
                 }
