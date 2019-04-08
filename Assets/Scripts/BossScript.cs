@@ -14,7 +14,6 @@ public class BossScript : MonoBehaviour
 
 
     public float StartOnPlayerXValue;
-    public float BossSizeScale;
     public float MovementSpeed;
     public int Health;
 
@@ -27,7 +26,6 @@ public class BossScript : MonoBehaviour
         enemyDeath = enemy.enemyDeath;
         Target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine("WaitForPlayer");
-        transform.localScale = new Vector3(BossSizeScale,BossSizeScale);
     }
 
 

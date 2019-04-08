@@ -55,7 +55,7 @@ namespace Assets.Scripts
             // HighScore
             highScore = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<Text>();
             highScore.text = "HS: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
-           // DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
+            // DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
 
             sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
             pointText = GameObject.FindGameObjectWithTag("PointsText").GetComponent<Text>();
@@ -69,7 +69,7 @@ namespace Assets.Scripts
             HurtPanel = GameObject.FindGameObjectWithTag("HurtPanel");
             HurtPanel.SetActive(false);
             SetWeapon("Begin!", GunTypes.Pistol1, sprites[18], 8);  //pistol4
-            GameObject.FindGameObjectWithTag("CrosshairLeft").SetActive(false);
+            //GameObject.FindGameObjectWithTag("CrosshairLeft").SetActive(false);
 
         }
 
