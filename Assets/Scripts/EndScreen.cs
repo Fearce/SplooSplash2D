@@ -14,6 +14,10 @@ public class EndScreen : MonoBehaviour
     void Start()
     {
         Stopwatch.Stop();
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
         string text = $"Congratulations!\nYou beat the game in {Stopwatch.Elapsed.Hours}:{Stopwatch.Elapsed.Minutes}:{Stopwatch.Elapsed.Seconds}\nYour score was: {score}\nYour highest score is: {PlayerPrefs.GetInt("HighScore", 0).ToString()}";
         gameObject.GetComponent<Text>().text = text;
     }
