@@ -345,6 +345,27 @@ namespace Assets.Scripts
                     case "GattlingGun":
                         SetWeapon("Gattlinggun unlocked!", GunTypes.GattlingGun, other, 100);  //GattlingGun
                         break;
+                    case "PistolSMG":
+                        SetWeapon("Pistol unlocked!", GunTypes.PistolSMG, other, 30);  //PistolSMG
+                        break;
+                    case "SMGGrey6":
+                        SetWeapon("SMG unlocked!", GunTypes.SMGGrey6, other, 35);  //SMGGrey6
+                        break;
+                    case "MachinegunOldSchool":
+                        SetWeapon("Machinegun unlocked!", GunTypes.MachinegunOldSchool, other, 35);  //MachinegunOldSchool
+                        break;
+                    case "RifleGrey":
+                        SetWeapon("Rifle unlocked!", GunTypes.RifleGrey, other, 20);  //RifleGrey
+                        break;
+                    case "MachineGrey2":
+                        SetWeapon("Machinegun unlocked!", GunTypes.MachineGrey2, other, 40);  //MachineGrey2
+                        break;
+                    case "SniperBrown":
+                        SetWeapon("Sniper unlocked!", GunTypes.SniperBrown, other, 10);  //SniperBrown
+                        break;
+                    case "PistolGod":
+                        SetWeapon("Pistol unlocked!", GunTypes.PistolGod, other, 200);  //PistolGod
+                        break;
 
                 }
             }

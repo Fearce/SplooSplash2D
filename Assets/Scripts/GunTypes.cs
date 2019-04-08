@@ -28,7 +28,8 @@ namespace Assets.Scripts
         Scout,
         SemiColt,
         SniperGrey,
-        GattlingGun
+        GattlingGun,
+        PistolGod
 
     }
 }
