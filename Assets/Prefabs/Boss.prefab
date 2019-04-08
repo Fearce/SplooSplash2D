@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 3656775478953234998}
   - component: {fileID: 8688862041949581611}
   - component: {fileID: 1296688998062391213}
+  - component: {fileID: 8933497297761792540}
   - component: {fileID: 6422209505031612770}
   - component: {fileID: 6560880193995650589}
   - component: {fileID: 72319811989941068}
   - component: {fileID: 824752148810294532}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +106,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8933497297761792540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6780744919018003729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da4bf2c2f5ca3e94b883fb5aeb56aa74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &6422209505031612770
 BoxCollider2D:
   m_ObjectHideFlags: 0
