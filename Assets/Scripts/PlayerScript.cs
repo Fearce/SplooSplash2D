@@ -56,6 +56,7 @@ namespace Assets.Scripts
             highScore = GameObject.FindGameObjectWithTag("HighScoreText").GetComponent<Text>();
             highScore.text = "HS: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
             DeadPanel = GameObject.FindGameObjectWithTag("DeadBoi");
+            DeadPanel.SetActive(false);
 
             sprites = Resources.LoadAll<Sprite>("Guns/drawn-gun-sprite-sheet-542860-7331932");
             pointText = GameObject.FindGameObjectWithTag("PointsText").GetComponent<Text>();
@@ -113,7 +114,7 @@ namespace Assets.Scripts
             if (Lives == 0)
             {
                 isDead = true;
-                DeadPanel.SetActive(true);
+                if (DeadPanel != null) DeadPanel.SetActive(true);
                 GameObject.FindGameObjectWithTag("FinalScoreText").GetComponent<Text>().text = "SCORE: " + points;
             }
 

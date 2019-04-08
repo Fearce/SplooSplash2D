@@ -12,7 +12,7 @@ public class BossScript : MonoBehaviour
     private Splatter Splatter;
 
 
-
+    public float FiringSpeed;
     public float StartOnPlayerXValue;
     public float BossSizeScale;
     public float MovementSpeed;
@@ -45,12 +45,12 @@ public class BossScript : MonoBehaviour
             Instantiate(enemyDeath, transform.position, Quaternion.identity);
             Debug.Log("ded ghost");
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, -3.29f);
-            this.BloodSplash.transform.localScale = gameObject.transform.localScale/8;
+            this.BloodSplash.transform.localScale = gameObject.transform.localScale/4;
             Instantiate(BloodSplash, pos, Quaternion.identity);
             Splatter.randomColor = false;
             Splatter.gameObject.GetComponent<SpriteRenderer>().color =
                 Color.red;
-            this.Splatter.gameObject.transform.localScale = gameObject.transform.localScale/6;
+            this.Splatter.gameObject.transform.localScale = gameObject.transform.localScale/7;
             Splatter splatterObj = (Splatter)Instantiate(Splatter, pos, Quaternion.identity);
 
             Destroy(gameObject);
@@ -95,7 +95,13 @@ public class BossScript : MonoBehaviour
             while (Fighting)
             {
                 // Debug.Log("Boss Fighting!");
-                yield return new WaitForSeconds(0.1f);
+                GameObject ghost = Instantiate(GameObject.FindGameObjectWithTag("Enemy"), transform.position, Quaternion.identity);
+                Color[] colorValues = new Color[]
+                {
+                    Color.blue, Color.cyan, Color.green, Color.magenta, Color.red, Color.yellow, Color.white
+                };
+                ghost.GetComponent<SpriteRenderer>().color = colorValues[Random.Range(0, colorValues.Length - 1)];
+                yield return new WaitForSeconds(FiringSpeed);
             }
         }
     }
