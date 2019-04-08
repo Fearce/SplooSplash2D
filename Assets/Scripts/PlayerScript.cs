@@ -274,7 +274,6 @@ namespace Assets.Scripts
                 {
                     PlayerPrefs.SetInt("HighScore", points);
                     highScore.text = "HS: " + points.ToString();
-                    GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "NEW HIGHSCORE!";
                     GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
 
                     // High Score Menu

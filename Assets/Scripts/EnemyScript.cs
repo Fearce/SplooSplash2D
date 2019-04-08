@@ -28,6 +28,11 @@ namespace Assets.Scripts
         // Sound Effect Objects
         public GameObject enemyDeath;
 
+        // Health Bar
+        public GameObject fullHealth;
+        public GameObject halfHealth;
+        public GameObject redHealth;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -68,6 +73,19 @@ namespace Assets.Scripts
                 Splatter splatterObj = (Splatter)Instantiate(Splatter, pos, Quaternion.identity);
                 
                 Destroy(gameObject);
+            }
+
+            if (Health >= 100)
+            {
+                fullHealth.SetActive(false);
+                redHealth.SetActive(false);
+            }
+
+            if (Health <= 50)
+            {
+                fullHealth.SetActive(false);
+                halfHealth.SetActive(true);
+                redHealth.SetActive(true);
             }
 
             // Make sure ghost isn't tilted
