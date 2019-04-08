@@ -36,6 +36,7 @@ namespace Assets.Scripts
             Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             pacAnim = Target.GetComponent<Animator>();
             StartCoroutine("GoToPlayer");
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Boss").GetComponent<Collider2D>());
             //seeker.StartPath(transform.position, Target.position, OnPathComplete);
         }
 

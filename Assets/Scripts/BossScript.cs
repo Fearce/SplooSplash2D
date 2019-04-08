@@ -13,19 +13,20 @@ public class BossScript : MonoBehaviour
     private GameObject BloodSplash;
     private Splatter Splatter;
 
-
+    private GameObject Enemy;
 
     public float StartOnPlayerXValue;
     public float MovementSpeed;
     public int Health;
+    public float SpawnSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyScript>();
-        Splatter = enemy.Splatter;
-        BloodSplash = enemy.BloodSplash;
-        enemyDeath = enemy.enemyDeath;
+        Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        Splatter = Enemy.GetComponent<EnemyScript>().Splatter;
+        BloodSplash = Enemy.GetComponent<EnemyScript>().BloodSplash;
+        enemyDeath = Enemy.GetComponent<EnemyScript>().enemyDeath;
         Target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine("WaitForPlayer");
     }
@@ -58,10 +59,24 @@ public class BossScript : MonoBehaviour
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points += 50;
                 GameObject.FindGameObjectWithTag("StatusText").GetComponent<Text>().text = "Boss dead! New level!";
                 GameObject.FindGameObjectWithTag("StatusText").transform.localScale = Vector3.one;
+                if (gameObject.name == "Boss1")
+                {
+                    EndScreen.score = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points;
+                    SceneManager.LoadScene("PersistentScene");
+                    SceneManager.LoadScene("LevelTwo", LoadSceneMode.Additive);
+
+                }
+                else if (gameObject.name == "Boss2")
+                {
+                    EndScreen.score = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points;
+                    SceneManager.LoadScene("PersistentScene");
+                    SceneManager.LoadScene("BossLevel", LoadSceneMode.Additive);
+                }
             }
             else
             {
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points += 1000;
+                EndScreen.score = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerScript>().points;
                 SceneManager.LoadScene("EndScene");
             }
         }
@@ -104,8 +119,13 @@ public class BossScript : MonoBehaviour
             Fighting = true;
             while (Fighting)
             {
-                // Debug.Log("Boss Fighting!");
-                yield return new WaitForSeconds(0.1f);
+                GameObject ghost = Instantiate(Enemy, transform.position, Quaternion.identity);
+                Color[] colorValues = new Color[]
+                {
+                    Color.blue, Color.cyan, Color.green, Color.magenta, Color.red, Color.yellow, Color.white
+                };
+                ghost.GetComponent<SpriteRenderer>().color = colorValues[Random.Range(0, colorValues.Length - 1)];
+                yield return new WaitForSeconds(SpawnSpeed);
             }
         }
     }

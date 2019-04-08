@@ -80,6 +80,11 @@ namespace Assets.Scripts
             SetWeapon("Begin!", GunTypes.Pistol1, sprites[18], 8);  //pistol4
             //GameObject.FindGameObjectWithTag("CrosshairLeft").SetActive(false);
 
+            if (EndScreen.score != 0)
+            {
+                points = EndScreen.score;
+            }
+
         }
 
         /// <summary>
