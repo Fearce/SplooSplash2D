@@ -45,13 +45,17 @@ public class BossScript : MonoBehaviour
             Instantiate(enemyDeath, transform.position, Quaternion.identity);
             Debug.Log("ded ghost");
             Vector3 pos = new Vector3(transform.position.x, transform.position.y, -3.29f);
-            this.BloodSplash.transform.localScale = gameObject.transform.localScale/4;
+            var prevScale = gameObject.transform.localScale;
+            this.BloodSplash.transform.localScale = prevScale / 4;
             Instantiate(BloodSplash, pos, Quaternion.identity);
             Splatter.randomColor = false;
             Splatter.gameObject.GetComponent<SpriteRenderer>().color =
                 Color.red;
-            this.Splatter.gameObject.transform.localScale = gameObject.transform.localScale/7;
+            this.Splatter.gameObject.transform.localScale = prevScale / 7;
             Splatter splatterObj = (Splatter)Instantiate(Splatter, pos, Quaternion.identity);
+
+            this.BloodSplash.transform.localScale = Vector3.one;
+            this.Splatter.gameObject.transform.localScale = Vector3.one;
 
             Destroy(gameObject);
         }
