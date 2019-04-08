@@ -165,6 +165,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         {
             if (isFiring && Time.time > nextFire && AmmoCount>0)
             {
+                isReloading = false;
                 nextFire = Time.time + FireRate;
                 Debug.Log("Firing");
                 bulletPos = GameObject.FindGameObjectWithTag("Player").transform.position;
