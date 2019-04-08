@@ -118,6 +118,42 @@ namespace Assets.Scripts
                     Joystick.FireRate = 0.08f;
                     ReloadSpeed = 4f;
                     break;
+                case GunTypes.PistolSMG:
+                    Damage = 20;
+                    BulletForce = 8;
+                    Joystick.FireRate = 0.15f;
+                    ReloadSpeed = 3f;
+                    break;
+                case GunTypes.SMGGrey6:
+                    Damage = 30;
+                    BulletForce = 8;
+                    Joystick.FireRate = 0.15f;
+                    ReloadSpeed = 2.5f;
+                    break;
+                case GunTypes.MachinegunOldSchool:
+                    Damage = 50;
+                    BulletForce = 11;
+                    Joystick.FireRate = 0.4f;
+                    ReloadSpeed = 3f;
+                    break;
+                case GunTypes.RifleGrey:
+                    Damage = 70;
+                    BulletForce = 10;
+                    Joystick.FireRate = 0.6f;
+                    ReloadSpeed = 3f;
+                    break;
+                case GunTypes.MachineGrey2:
+                    Damage = 50;
+                    BulletForce = 12;
+                    Joystick.FireRate = 0.2f;
+                    ReloadSpeed = 3.5f;
+                    break;
+                case GunTypes.SniperBrown:
+                    Damage = 100;
+                    BulletForce = 15;
+                    Joystick.FireRate = 0.5f;
+                    ReloadSpeed = 3f;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
